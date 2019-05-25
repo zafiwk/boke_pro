@@ -7,6 +7,8 @@
 
 img{
     border-radius: 5px;
+    border: 0;
+    display: inline-block;
 }
 a{
     text-decoration: none;
@@ -16,6 +18,16 @@ body{
     background: #e9eaed;
     min-width: 1200px;
     line-height: 1.5;
+    /* overflow: hidden; */
+}
+hr{
+    border:none;
+}
+/* ul{
+    overflow: hidden;
+} */
+p,h1,h2,h3,h4,h5,h6,li,a{
+    text-overflow:ellipsis;
 }
 .borderRadius{
     border-radius: 5px;
@@ -140,7 +152,7 @@ div.top >span{
     
 }
 .labelcontent>.topBtn>hr{
-    color: #e4e3e3;
+    background-color: #e4e3e3;
     margin: 0 20px;
 }
 .labelcontent>.content{
@@ -215,13 +227,29 @@ div.top >span{
     left: 20px;
     top:20px;
     margin-bottom:10px;
-    border-bottom: 2px solid black;
+    /* border-bottom: 2px solid black; */
     line-height: 40px;
+    /* width: 85px;
+    transition: 0.3s; */
 }
+.labelcontent>.clicklist>h4::after{
+    content: "";
+    position: absolute;
+    width: 85px;
+    height: 2px;
+    background: #000000;
+    left: 0;
+    bottom: 0;
+    transition: all 0.5s ease;
+}
+.labelcontent>.clicklist>h4:hover::after{
+    width: 100px;
+}
+
 .labelcontent>.clicklist>hr{
     position:absolute;
     width: 241px;
-    color:#eeeeee;
+    background-color:#eeeeee;
     height: 1px;
     left: 20px;
     top:62px;
@@ -255,15 +283,31 @@ div.top >span{
     font-weight:normal;
     line-height: 40px;
     margin-bottom: 10px;
-    border-bottom: 2px solid #000000;
+    /* border-bottom: 2px solid #000000; */
     font-size: 16px;
     color: #484848;
     position: absolute;
     left: 20px;
     top:20px;
+    /* transition: 0.3s; */
+    width: 65px;
+
+}
+.sortByTimeContent>.topBtn>h4::after{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 65px;
+    height: 2px;
+    background-color: #000000;
+    transition: all 0.5s linear;
+}
+.sortByTimeContent>.topBtn>h4:hover::after{
+    width: 100px;
 }
 .sortByTimeContent>.topBtn>hr{
-    color:#eeeeee;
+    background-color:#eeeeee;
     height: 1px;
     position: absolute;
     top:62px;
@@ -335,7 +379,7 @@ div.top >span{
     margin-top:20px;
     position: relative;
 }
-.ecommend_blogs>h4{
+.ecommend_blogs>h4,.note>h4{
     height: 40px;
     font-weight: normal;
     position: absolute;
@@ -343,13 +387,27 @@ div.top >span{
     left: 20px;
     top:20px;
     margin-bottom:10px;
-    border-bottom: 2px solid black;
+    /* border-bottom: 2px solid black; */
     line-height: 40px;
+    text-align: left;
+    width: 65px; 
+    /* transform-origin: left bottom; */
+    /* transition: all 0.3s linear; */
 }
-.ecommend_blogs>hr{
+.ecommend_blogs>h4::after,.note>h4::after{
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 65px;
+    height: 2px;
+    background-color: #000000;
+    transition: all 0.5s linear;
+}
+.ecommend_blogs>hr,.note>hr{
     position:absolute;
     width: 240px;
-    color:#eeeeee;
+    background-color:#eeeeee;
     height: 1px;
     left: 20px;
     top:62px;
@@ -388,7 +446,7 @@ div.top >span{
 }
 .newblog{
     width: 900px;
-    height: 820px;
+    height: 860px;
     background: white;
     border-radius: 5px;
     float: left;
@@ -400,15 +458,30 @@ div.top >span{
     font-weight:normal;
     line-height: 40px;
     margin-bottom: 10px;
-    border-bottom: 2px solid #000000;
     font-size: 16px;
     color: #484848;
     position: absolute;
     left: 20px;
     top:20px;
+    width: 65px;
+    /* border-bottom: 2px solid #000000;
+    transition: 0.3s */
+}
+.newblog>.topBtn>h4::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 65px;
+    height: 2px;
+    background-color: #000000;
+    transition: all 0.5s linear;
+}
+.newblog>.topBtn>h4:hover::after{
+    width: 100px;
 }
 .newblog>.topBtn>hr{
-    color:#eeeeee;
+    background-color:#eeeeee;
     height: 1px;
     position: absolute;
     top:62px;
@@ -426,11 +499,12 @@ div.top >span{
 }
 .newblog>ul>li{
     float: left;
+    border-bottom: 1px dashed #eeeeee;
 }
-.newblog>ul>.top{
+/* .newblog>ul>.top{
     margin-left: 10px;
     margin-right: 10px;
-}
+} */
 .newblog>ul>.top>p{
     float: left;
     font-size: 20px;
@@ -443,15 +517,16 @@ div.top >span{
 .newblog>ul>.top>ul{
     list-style-type: none;
     float: left;
-    display: flex;
-    justify-content: space-between;
+    /* display: flex; */
+    /* justify-content: space-between; */
     width: 100%;
     height:140px;
     margin-bottom: 20px;
 }
 .newblog>ul>.top>ul>li{
     width: 200px;
-    
+    float: left;
+    margin-right: 15px;
 }
 .newblog>ul>.top>ul>li>img{
     width: 100%;
@@ -473,25 +548,128 @@ div.top >span{
     justify-content: space-around;
     align-items: center;
 }
-.newblog>ul>.top>.footer>img{
+.newblog>ul>.top>.footer>img,.newblog>ul>.common>.footer>img{
     width: 36px;
     height: 36px;
     border-radius: 50%;
     border: 2px solid black;
 
 }
-.newblog>ul>.top>.footer>span{
+.newblog>ul>.top>.footer>span,.newblog>ul>.common>.footer>span{
     color: #999999;
 }
-.newblog>ul>.top>.footer a{
+.newblog>ul>.top>.footer a,.newblog>ul>.common>.footer a{
     color:#009966;
 }
 .newblog>ul>li.common{
     width: 100%;
     height: 218px;
+    position: relative;
+}
+.newblog>ul>.common>h3{
+    margin-top: 24px;
+    width: 100%;
+    line-height: 24px;
+    float: left;
+    margin-bottom: 15px;
 }
 .newblog>ul>li.common>img{
     float: left;
-    width: 188px;
-    height: 131px;
+    width: 200px;
+    height: 140px;
+}
+.newblog>ul>.common>p:nth-child(3){
+    float: left;
+    margin-top: 15px;
+    font-size: 14px;
+    margin-left: 20px;
+    width:640px ;
+    font-size: 14px;
+    color: #666666;
+}
+.newblog>ul>li.common>.footer{
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 360px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.newblog>ul>li.common>a{
+    background: #12b7de;
+    color: white;
+    position: absolute;
+    height: 28px;
+    width: 80px;
+    bottom: 22px;
+    right: 32px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 15px;
+    border-radius:5px;
+}
+.pic{
+    float: left;
+    width: 280px;
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 220px;
+    background: white;
+    border-radius: 5px;
+    position: relative;
+}
+.pic>.warpView{
+    float: left;
+    width: 240px;
+    height: 180px;
+    overflow: hidden;
+    position:absolute;
+    left: 20px;
+    top: 20px;
+}
+.pic>.warpView>img{
+    width: 240px;
+    height: 180px;
+    transition: all 0.3 linear;
+    
+}
+.pic>.warpView:hover img{
+    transform: scale(1.1);
+    overflow: hidden;
+}
+.note{
+    float: left;
+    background-color: white;
+    border-radius:5px;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 280px;
+    height: 260px;
+    position: relative
+}
+.note>a{
+    float: left;
+    width: 56px;
+    height: 19px;
+    line-height: 19px;
+    color:#666666;
+    font-size: 14px;
+    margin-top:75px;
+    margin-left: 20px;
+}
+.note>h4:hover::after,.ecommend_blogs>h4:hover::after{
+   width: 100px;;
+}
+.bodyfooter{
+    margin-top:2259px;
+    width: 100%;
+    height: 200px;
+    background-color: #373d41;
+}
+.bodyfooter>.top{
+    background-color: #00c1de;
+    widows: 100%;
+    height: 10px;
 }
