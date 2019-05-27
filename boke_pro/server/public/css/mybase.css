@@ -86,6 +86,7 @@ div.top>span {
     background-color: #e9eaed;
     /* float: left; */
 
+    position: relative;
     width: 1200px;
     margin: 20px auto;
 }
@@ -125,7 +126,7 @@ div.top>span {
 
 }
 
-.bodyTop>.myCard>.myIDCard {
+.bodyTop>.myCard>.myIDCard,.myCard_last>.myIDCard {
     font-size: 25px;
     font-weight: normal;
     color: #89919a;
@@ -135,7 +136,7 @@ div.top>span {
 
 }
 
-.bodyTop>.myCard p {
+.bodyTop>.myCard p,.myCard_last p {
     font-size: 12px;
     text-align: left;
     margin-left: 20px;
@@ -405,6 +406,7 @@ div.top>span {
 }
 
 .sortByTimeContent>.blogCotent>ul,.sortByTimeContent_list>.blogCotent>ul {
+    margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -413,8 +415,8 @@ div.top>span {
 
 .sortByTimeContent>.blogCotent>ul>li {
     width: 247px;
-    height: 260px;
-    padding: 20px 10px;
+    height: 280px;
+    padding: 10px ;
 }
 
 .sortByTimeContent>.blogCotent>ul>li:hover,.sortByTimeContent_list>.blogCotent>ul>li>div:hover {
@@ -830,16 +832,37 @@ div.top>span {
     font-size: 15px;
     color: #666666;
 }
-.sortByTimeContent_list>.blogCotent>ul>li.blogCotent-li>{
+.sortByTimeContent_list>.blogCotent>ul>li.blogCotent-li{
     width: 267px;
     height: 300px;
-
+    position: relative;
+    /* width: 247px;
+    height: 260px;
+    padding: 20px 10px; */
 }
 
-.sortByTimeContent_list>.blogCotent>ul>li.blogCotent-li>div{
+ .sortByTimeContent_list>.blogCotent>ul>li.blogCotent-li>div{
     position:absolute;
     width: 247px;
-    height: 260px;
-    padding: 20px 10px;
+    height: 280px;
+    padding:10px;
+    /* background:red; */
+} 
+
+.top-list-line{
+    border-top: 1px solid #eeeeee;
+}
+.left_list_line{
+    border-right: 1px solid #eeeeee;
 }
 
+.myCard_last{
+    position: absolute;
+    width: 280px;
+    height: 260px;
+    position: relative;
+    background: #2a2a2a;
+    border-radius: 5px;
+    left:920px;
+    top: 0px;
+}
