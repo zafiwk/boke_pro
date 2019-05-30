@@ -14,27 +14,28 @@ create table if not exists user(
 );
 
 -- 标签
-create table if not exists label(
-    lid int primary key auto_increment, 
-    name varchar(32)               -- 标题名字
-);
+-- create table if not exists label(
+--     lid int primary key auto_increment, 
+--     name varchar(32)               -- 标题名字
+-- );
 -- 博客
 create table if not exists blogs(
     bid int primary key auto_increment,
+    btitle varchar(60),               -- 标题
     bcontent text,                    -- 内容
-    btiem datetime,                   -- 实践
+    btiem datetime,                   -- 时间
     labelId int,                      -- 标签id
-    bclick int ,                      -- 点击量
-    btype  int      -- 1是个人博客 2是网页设计心得
-
+    bclick int                     -- 点击量   
+    -- btype  int     1是个人博客 2是网页设计心得
 );
+
 -- 首页轮播图
 create table if not exists   carousel (
     cid int primary key auto_increment, -- 轮播图片
     pic varchar(64),                   -- 图片路劲
     blogId int  ,
     orderId int ,
-    foreign key(blogId) references  blogs.bid                  -- 对应的文章
+    foreign key(blogId) references  blogs(bid)                  -- 对应的文章
 );
 
 -- 博客推荐
@@ -42,7 +43,7 @@ create table if not exists ecommend_blogs(
     eid int primary key auto_increment, 
     blogId int  ,                  -- 对应博客                 
     orderId int ,                    -- 排序id
-    foreign key(blogId) references blogs.bid
+    foreign key(blogId) references blogs(bid)
 );
 
 -- 同标签中推荐文章
@@ -51,8 +52,8 @@ create table if not exists ecommend_label(
     blogId int  ,          -- 对应博客 
     orderId int ,            -- 排序
     labelId int ,           -- 对应的标签
-    foreign key(blogId)  references blogs.bid;
-    foreign key(labelId) references label.lid;
+    foreign key(blogId)  references blogs(bid)
+    -- foreign key(labelId) references label(lid)
 );
 
 -- 置顶文章
@@ -61,10 +62,10 @@ create table if not  exists stick(
     blogId int      -- 博客id
 );
 
---上传记录表
-create table if not exists file{
-    sid int primary key auto_increment;
-    orderId int ,            -- 排序
-    foreign key(blogId)  references blogs.bid;
-    localStr varchar(100);
-}
+-- 上传记录表
+create table if not exists filemap(
+    sid int primary key auto_increment,
+    blogId int ,            -- 博客id
+    foreign key(blogId)  references blogs(bid),
+    localStr varchar(100)
+);

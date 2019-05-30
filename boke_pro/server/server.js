@@ -19,7 +19,7 @@ server.use(bodyParser.urlencoded({
 }));
 
 server.use("/admin",userRouter);
-server.use("/label",labelRouter);
+//server.use("/label",labelRouter);
 server.use("/carousel",carousel);
 server.use("/ecommend_blogs",ecommend_blogs);
 server.use("/stick",stick);

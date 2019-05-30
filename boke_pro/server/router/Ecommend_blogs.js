@@ -36,10 +36,12 @@ router.post("/deleteById",(req,res)=>{
 });
 
 router.post("/add",(req,res)=>{
-    pool.query("inset into ecommend_blogs values(?,?)",[req.body.blogId,res.body.orderId],(error,result)=>{
+    var date= new Date();
+    pool.query("inset into ecommend_blogs(btitle,bcontent,btiem,labelId,bclick) values(?,?,?,?,?)",[req.body.title,req.body.content,date.getSeconds,req.body.bokeType,0],(error,result)=>{
         if(error)
             throw error;
         if(result.affectedRows>0){
+            console.log("添加博客数据"+result);
             res.send({code:200,msg:"添加成功"})
         }else{
             res.send({code:300,msg:"添加异常"})
