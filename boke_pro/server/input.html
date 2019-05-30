@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <style rel="styleSheet" href="/css/mybase.css"></style> -->
+    <link rel="styleSheet" href="/css/mybase.css">
+    </link>
+    <script src="/js/ckeditor.js"></script>
+</head>
+
+<body>
+
+    <!-- 渐变色 -->
+    <header class="topLine"></header>
+    <!-- 导航栏 -->
+    <div class="top">
+        <span>王康的个人博客</span>
+        <nav>
+            <a href="/index.html">首页</a>
+            <a href="/list.html">个人博客日记</a>
+            <a href="/list1.html">最新博文</a>
+            <a href="/youxiu.html">优秀个人博客</a>
+            <a href="/aboutme.html">关于我</a>
+        </nav>
+    </div>
+
+    <!-- 主体部分 -->
+    <div id="body">
+        <div class="warp-input">
+            <h1>博客编写</h1>
+
+            <form action="http://localhost:8080/test/testUrl" method="GET" enctype="multipart/form-data">
+
+                <select name="bokeType" class="inputHeight">
+                    <option value="1">笔记心得</option>
+                    <option value="2">vue笔记</option>
+                    <option value="3">心灵感悟</option>
+                    <option value="4">web前沿</option>
+                </select>
+                标题: <input type="text" name="title" id="" class="inputHeight"><br>
+                <textarea name="content" id="content">
+            开始编写博客吧
+        </textarea>
+
+                <button>提交</button>
+
+                <!-- <input type="button" value="测试小按钮" onclick="test()"> -->
+            </form>
+        </div>
+    </div>
+    <script>
+        // ClassicEditor.create(document.querySelector('#editor'), {
+        //         ckfinder: {
+        //             uploadUrl: 'http://localhost:8080/upload/upfile'
+        //         }
+        //     }).then(editor => {
+        //         window.editor = editor;
+        //         data = editor.getData();
+        //         console.log(data);
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //     });
+
+        function test() {
+            let data = CKEDITOR.instances.content.getData();
+            console.log(data);
+        }
+        CKEDITOR.replace('content');
+    </script>
+</body>
+
+</html>

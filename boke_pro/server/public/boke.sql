@@ -25,7 +25,6 @@ create table if not exists blogs(
     btiem datetime,                   -- 实践
     labelId int,                      -- 标签id
     bclick int ,                      -- 点击量
-    pic varchar(1024) ,               -- 文章图片,分割
     btype  int      -- 1是个人博客 2是网页设计心得
 
 );
@@ -61,3 +60,11 @@ create table if not  exists stick(
     sid int primary key auto_increment,
     blogId int      -- 博客id
 );
+
+--上传记录表
+create table if not exists file{
+    sid int primary key auto_increment;
+    orderId int ,            -- 排序
+    foreign key(blogId)  references blogs.bid;
+    localStr varchar(100);
+}
