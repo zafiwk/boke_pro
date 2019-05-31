@@ -33,21 +33,19 @@
         <div class="warp-input">
             <h1>博客编写</h1>
 
-            <form action="http://localhost:8080//ecommend_blogs/add" method="post" enctype="multipart/form-data">
+            <form action="http://localhost:8080/blog/add" method="POST">
 
-                <select name="bokeType" class="inputHeight">
+                <select name="bokeType" >
                     <option value="1">笔记心得</option>
                     <option value="2">vue笔记</option>
                     <option value="3">心灵感悟</option>
                     <option value="4">web前沿</option>
                 </select>
-                标题: <input type="text" name="title" id="" class="inputHeight"><br>
+                标题: <input type="text" name="title" id="" ><br>
                 <textarea name="content" id="content">
-            开始编写博客吧
-        </textarea>
-
+                
+                </textarea>
                 <button>提交</button>
-
                 <!-- <input type="button" value="测试小按钮" onclick="test()"> -->
             </form>
         </div>

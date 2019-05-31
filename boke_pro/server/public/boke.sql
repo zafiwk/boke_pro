@@ -67,5 +67,5 @@ create table if not exists filemap(
     sid int primary key auto_increment,
     blogId int ,            -- 博客id
     foreign key(blogId)  references blogs(bid),
-    localStr varchar(100)
+    localStr varchar(255)
 );

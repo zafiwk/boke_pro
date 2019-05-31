@@ -10,6 +10,7 @@ const stick = require("./router/Stick")
 const ecommend_label=require("./router/Ecommend_label");
 const test=require("./router/Test");
 const fileUpload =require("./router/FileUpload")
+const blog = require("./router/Blog")
 server.listen(8080);
 
 //server.use("/",express.static("public"));
@@ -26,3 +27,4 @@ server.use("/stick",stick);
 server.use("/ecommend_label",ecommend_label);
 server.use("/test",test);
 server.use("/upload",fileUpload);
+server.use("/blog",blog);
