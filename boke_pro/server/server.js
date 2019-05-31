@@ -13,8 +13,8 @@ const fileUpload =require("./router/FileUpload")
 const blog = require("./router/Blog")
 server.listen(8080);
 
-//server.use("/",express.static("public"));
-server.use(express.static("public"));
+server.use("/",express.static("public"));
+// server.use(express.static("public"));
 server.use(bodyParser.urlencoded({
     extended:false 
 }));
