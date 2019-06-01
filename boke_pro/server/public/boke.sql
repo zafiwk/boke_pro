@@ -69,3 +69,9 @@ create table if not exists filemap(
     foreign key(blogId)  references blogs(bid),
     localStr varchar(255)
 );
+-- 收藏
+create table if not exists  shoucang(
+    sid int primary key auto_increment,
+    uid int,
+    bid int 
+)

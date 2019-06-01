@@ -15,6 +15,7 @@ img {
 a {
     text-decoration: none;
     cursor: pointer;
+    color: #000;
 }
 
 body {
@@ -180,14 +181,30 @@ div.top>span {
     content: "";
     display: block;
     background:  #000000;
-    width: 50px;
+    width: 80px;
     height: 2px;
     position: absolute;
     bottom:0px;
     left: 0px;
+    transition: all 0.5s ease;
+    /* border-bottom: 2px solid  #000000; */
+}
+.labelSelect1::after {
+    content: "";
+    display: block;
+    background:  #000000;
+    width: 80px;
+    height: 2px;
+    position: absolute;
+    bottom:0px;
+    left: 0px;
+    /* transition: all 0.5s ease; */
     /* border-bottom: 2px solid  #000000; */
 }
 
+.labelSelect:hover::after{
+    width: 100px;
+}
 .labelcontent>.topBtn>ul>li {
     font-size: 16px;
     color: #333333;
@@ -196,7 +213,7 @@ div.top>span {
     line-height: 40px;
     text-align: center;
     float: left;
-
+    position: relative;
 }
 
 .labelcontent>.topBtn>hr {
@@ -657,8 +674,8 @@ div.top>span {
     margin-left: 10px;
     margin-right: 10px;
 } */
-.newblog>ul>.top>p ,
-.newblog-list>ul>.top>p {
+.newblog>ul>.top>a>p ,
+.newblog-list>ul>.top>a>p {
     float: left;
     font-size: 20px;
     font-weight: bold;
@@ -1428,7 +1445,10 @@ div.top>span {
 }
 
 .warp-info > .content{
-    width: 1200px;
+    padding-top:100px;
+    padding-right: 50px;
+    padding-left: 50px;
+    width: 1100px;
     float: left;
     background:white;
     border-bottom-left-radius: 5px;
@@ -1467,7 +1487,6 @@ div.top>span {
 .warp_userLogin>input[type=password]{
     display: inline-block;
     margin: 0px auto;
-    
     padding: 12px;
     border-radius: 2px;
     border: 1px solid #cecece;
@@ -1501,9 +1520,35 @@ div.top>span {
     width: 100%;
     height: 13px;
 }
+.warp_userLogin>a{
+    font-size: 14px;
+    color: red;
+    display:inline-block;
+    width: 270px;
+    text-align: right;
+    height: 15px;
+    line-height: 15px;
+    padding: 12px;
+}
+
 .bodyfooter-userlogin{
     width: 100%;
     height: 200px;
     background-color: #373d41;
     margin-top: 100px;
+}
+
+.shoucangtable{
+    /* text-align: center; */
+    margin: 0 auto;
+    display:block;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+    width: 600px;
+    height: 400px;
+}
+
+.shoucangtable td{
+    text-align:center;
 }

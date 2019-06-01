@@ -22,6 +22,7 @@
             <a href="/list1.html">最新博文</a>
             <a href="/youxiu.html">优秀个人博客</a>
             <a href="/aboutme.html">关于我</a>
+            <a href="/admin/shoucang">收藏列表</a>
         </nav>
     </div>
     <!-- 主体部分 -->
@@ -43,7 +44,7 @@
                 <div class="topBtn">
                     <ul>
                         <li class="labelSelect">个人博客</li>
-                        <li value="1">笔记心得</li>
+                        <li value="1"  >笔记心得</li>
                         <li value="2">vue笔记</li>
                         <li value="3">心灵感悟</li>
                         <li value="4">web前沿</li>
@@ -105,10 +106,10 @@
                     <h4>精彩专题</h4>
                     <hr>
                     <ul>
-                        <li value="1" class="labelSelect">笔记心得</li>
-                        <li value="2">vue笔记</li>
-                        <li value="3">心灵感悟</li>
-                        <li value="4">web前沿</li>
+                        <li value="1"><a href="JavaScript:sortByTimeContent_loaddata(1)">笔记心得</a></li>
+                        <li value="2"><a href="JavaScript:sortByTimeContent_loaddata(2)">vue笔记</a></li>
+                        <li value="3"><a href="JavaScript:sortByTimeContent_loaddata(3)">心灵感悟<a></li>
+                        <li value="4"><a href="JavaScript:sortByTimeContent_loaddata(4)">web前沿</a></li>
                     </ul>
                 </div>
                 <div class="blogCotent">
@@ -201,8 +202,8 @@
                 </div>
                 <ul>
                     <!-- 置顶 -->
-                    <li class="top">
-                        <p><span>【顶】</span>别让这些闹心的套路,毁了你的网页设计</p>
+                   <li class="top" id="newBlog_top">
+                    <a  href="#"><p><span>【顶】</span>别让这些闹心的套路,毁了你的网页设计</p></a>
                         <ul>
                             <li><img src="1.jpg"></li>
                             <li><img src="1.jpg"></li>
@@ -268,7 +269,7 @@
 
     function sortByTimeContent_loaddata(typeId) {
         ajax_get("http://localhost:8080/blog/queryByTypeId?typeId=" + typeId, (result) => {
-            console.log(result);
+            // console.log(result);
             var dataArray = result["data"];
             var html = "";
             for (let i = 0; i < dataArray.length; i++) {
@@ -295,6 +296,9 @@
         });
     }
 
+    sortByTimeContent_loaddata(1);
+
+    getTopBoke(newBlog_top)
 </script>
 
 </html>

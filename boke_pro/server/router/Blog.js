@@ -5,9 +5,9 @@ const path = require("path");
 
 router.post("/add", (req, res) => {
     var date = new Date();
-    console.log("===============================================================");
-    console.log(req.body);
-    console.log("毫秒时间:"+date.toLocaleDateString());
+    // console.log("===============================================================");
+    // console.log(req.body);
+    // console.log("毫秒时间:"+date.toLocaleDateString());
     pool.query("insert into blogs(btitle,bcontent,btiem,labelId,bclick) values(?,?,?,?,?)", [req.body.title, req.body.content, date.toLocaleDateString(), req.body.bokeType, 0], (error, result) => {
         if (error)
             throw error;
@@ -53,7 +53,7 @@ router.get("/queryById", (req, res) => {
             res.send({ code: 300, msg: "查询结果为空" })
             return
         }
-        res.send({ code: 200, msg: "查询博客", data: result[0] });
+        res.send({ code: 200, msg: "查询博客", data: result });
     });
 });
 
@@ -82,8 +82,109 @@ router.get("/queryByTypeId", (req, res) => {
             res.send({ code: 300, msg: "查询结果为空" })
             return
         }
-        res.send({ code: 200, msg: "查询博客", data: result});
+        res.send({ code: 200, msg: "查询博客", data: result });
     });
 });
 
+//获取置顶博客
+router.get("/getTopBoke", (req, res) => {
+    pool.query("select * from blogs where bid=(select blogId from stick where sid = 1 )", (error, result) => {
+        if (error)
+            throw error;
+        if (result.length == 0) {
+            res.send({ code: 300, msg: "置顶博客获取失败" })
+        } else {
+            res.send({ code: 200, msg: "置顶博客获取成功", data: result });
+        }
+
+    });
+});
+
+//收藏博客
+router.post("/addCollect", (req, res) => {
+    if (req.session.islogin) {
+        // var rootPath=path.dirname(__dirname);
+        // var filePath=rootPath+path.sep+"shoucang.html";
+        // res.sendFile(filePath);
+        var bid = req.body.bid;
+        var uid = req.session.uid;
+        pool.query("select * from shoucang where uid=? and bid=?", [uid,bid], (error, result) => {
+            if(error)
+                throw error;
+            if (result.length == 0) {
+                pool.query("insert into shoucang(uid,bid) values(?,?)", [uid, bid], (error, result) => {
+                    if (error)
+                        throw error;
+                    if (result.affectedRows > 0) {
+                        res.send({ code: 200, msg: "保存成功" });
+                    } else {
+                        res.send({ code: 300, msg: "添加失败" });
+                    }
+                });
+            } else {
+                res.send({ code: 300, msg: "文章已经被收藏过" });
+            }
+        })
+    } else {
+        // res.redirect("/userlogin.html");
+        res.send({code:201,msg:"没有登录 跳转到登录页面",url:"/userlogin.html"})
+    }
+});
+
+//获取所有收藏博客
+router.post("/getAllCollect", (req, res) => {
+    var uid = req.session.uid;
+    // pool.query("select * from shoucang where uid=?", [uid], (error, result) => {
+    //     if (error)
+    //         throw error;
+    //     // if(result.length==0){
+    //     //     res.send({code:300,msg:"收藏列表获取失败"});
+    //     // }else{
+    //     //     res.send({code:200,msg:"收藏列表获取成功",data:result});
+    //     // }
+
+    //     var sid = [];
+    //     for (let i = 0; i < result.length; i++) {
+    //         var model = result[i];
+    //         console.log("文章id"+model.bid);
+    //         sid.push(model.bid);
+    //     }
+    //     console.log("主键列表:"+sid.join(","));
+    //     pool.query("select bid,btitle  from blogs where bid in (?)", sid.join(","), (error, result) => {
+    //         console.log("获取收藏数目" + result.length);
+    //         // res.send(result);
+    //     });
+    // });
+    pool.query("select bid,btitle  from blogs where bid in (select bid from shoucang where uid=?)", [uid],(error,result)=>{
+        if (error)
+         throw error;
+        res.send({code:200,msg:"获取",data:result});
+    });
+});
+//删除收藏
+router.post("/deleteCollect", (req, res) => {
+    var bid = req.body.bid;
+    var uid = req.session.uid;
+    pool.query("delete from shoucang where bid=? and uid=?",[bid,uid],(error,result)=>{
+        if(error)
+            throw error;
+        if(result.affectedRows>0){
+            res.send({code:200,msg:"删除成功"});
+        }else{
+            res.send({code:202,msg:"删除异常"});
+        }
+        
+
+
+    });
+    // pool.query("delete from shoucang where sid=?", [collectId], (error, result) => {
+    //     if (error)
+    //         throw error;
+    //     if (result.affectedRows > 0) {
+    //         res.send({ code: 200, msg: "删除成功" });
+    //     } else {
+    //         res.send({ code: 300, msg: "删除异常" });
+    //     }
+    // });
+});
 module.exports = router;

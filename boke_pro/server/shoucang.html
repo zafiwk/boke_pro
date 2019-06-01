@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>收藏列表</title>
+    <!-- <style rel="styleSheet" href="/css/mybase.css"></style> -->
+    <link rel="styleSheet" href="/css/mybase.css">
+    </link>
+    <script src="/js/myjs.js"></script>
+</head>
+
+<body>
+
+    <!-- 渐变色 -->
+    <header class="topLine"></header>
+    <!-- 导航栏 -->
+    <div class="top">
+        <span>王康的个人博客</span>
+        <nav>
+            <a href="/index.html">首页</a>
+            <a href="/list.html">个人博客日记</a>
+            <a href="/list1.html">最新博文</a>
+            <a href="/youxiu.html">优秀个人博客</a>
+            <a href="/aboutme.html">关于我</a>
+            <a href="/admin/shoucang">收藏列表</a>
+        </nav>
+    </div>
+
+    <!-- 主体部分 -->
+    <div id="body">
+        <table class="shoucangtable">
+            <thead>
+                <th>
+                    标题
+                </th>
+                <th>
+                    删除博客
+                </th>
+            </thead>
+            <tbody id="content">
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <footer class="bodyfooter-userlogin">
+            <div class="top">
+    
+            </div>
+    </footer>
+
+    <script>
+       function loadData(){
+        ajax_post("/blog/getAllCollect",(obj)=>{
+            // res.send({code:201,msg:"没有登录 跳转到登录页面",url:"/userlogin.html"})
+            // console.log(obj["data"]);
+            var array = obj["data"];
+            var html="";
+            for(let i=0;i<array.length;i++){
+                var model = array[i];
+                html = html +`
+                <tr>
+                    <td><a href="/info.html?bid=${model.bid}" >${model.btitle}</a></td>
+                    <td><a href="javascript:deleteBid(${model.bid})" >删除</a></td>
+                </tr>
+                `
+            }
+            content.innerHTML=html;
+        },null) ;
+       }
+       loadData();
+
+       function deleteBid(bid){
+            var body = "bid="+bid;
+            ajax_post("/blog/deleteCollect",(obj)=>{
+                if(obj["code"]==200){
+                    alert("删除成功");
+                    loadData();
+                }else{
+                    alert("服务器异常");
+                }
+            },body);
+       }
+    </script>
+</body>
+
+</html>

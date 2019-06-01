@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>注册</title>
     <link rel="stylesheet" href="./css/mybase.css">
+    <script src="/js/myjs.js"></script>
 </head>
 
 <body>
@@ -21,22 +22,72 @@
             <a href="/list1.html">最新博文</a>
             <a href="/youxiu.html">优秀个人博客</a>
             <a href="/aboutme.html">关于我</a>
+            <a href="/admin/shoucang">收藏列表</a>
         </nav>
     </div>
     <!-- 主体部分 -->
     <div id="body">
+        <!-- <form action="/admin/register" method="POST"> -->
         <div class="wrap-reg">
-                <h1>注册</h1>
-                <input type="text" name="" id="" placeholder="输入账号">
-                <input type="password" name="" id="" placeholder="输入密码">
-                <button>登录</button>
+            <h1>注册</h1>
+            <input type="text" name="uname" id="uname" placeholder="输入账号" onblur="testUname()">
+            <label id="luname"></label>
+            <input type="password" name="pwd" id="pwd" placeholder="输入密码" onblur="testPwd()">
+            <label id="lpwd"></label>
+            <button onclick="register()">登录</button>
         </div>
+        <!-- </form> -->
     </div>
     <footer class="bodyfooter-userlogin">
         <div class="top">
 
         </div>
     </footer>
+    <script>
+        var isNotLogin = false;
+        function register() {
+            if (!isNotLogin) {
+                return;
+            }
+            var body = "uname=" + uname.value + "&pwd=" + pwd.value;
+            ajax_post("/admin/register", (obj) => {
+                // console.log(obj)
+                alert("注册成功")
+                window.location.href="http://localhost:8080/"; 
+            }, body)
+        }
+   
+
+        function testPwd() {
+            if(!pwd.value){
+                isNotLogin=false;
+                lpwd.innerHTML="密码不能为空";
+            }else{
+                isNotLogin=true;
+                lpwd.innerHTML="";
+            }
+        }
+        function testUname() {
+            if (!uname.value) {
+                isNotLogin=false;
+                luname.innerHTML = "用户名为空";
+                return
+            }else{
+                isNotLogin=true;
+                luname.innerHTML="";
+            }
+            var body = "uname=" + uname.value;
+            ajax_post("/admin/userIsExists", (obj) => {
+                if (obj["msg"] === "用户存在") {
+                    isNotLogin = false;
+                    luname.innerHTML="用户已近存在";
+                } else {
+                    isNotLogin = true;
+                    luname.innerHTML=""
+                }
+            }, body);
+        }
+    </script>
 </body>
 
 </html>

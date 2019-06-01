@@ -1,6 +1,7 @@
 const express=   require("express");
 const server = express();
 const bodyParser = require("body-parser") ;
+const session = require("express-session")
 
 const userRouter = require("./router/UserRouter");
 const labelRouter = require("./router/LabelRouter");
@@ -17,6 +18,12 @@ server.use("/",express.static("public"));
 // server.use(express.static("public"));
 server.use(bodyParser.urlencoded({
     extended:false 
+}));
+
+server.use(session({
+    secret:'sdsaewrw ewreecret',//对sessionId 相关cookie进行签名
+    resave:false,
+    saveUninitialized:false
 }));
 
 server.use("/admin",userRouter);

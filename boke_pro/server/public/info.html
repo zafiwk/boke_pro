@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>博客</title>
     <link rel="stylesheet" href="./css/mybase.css">
+    <script src="/js/myjs.js"></script>
 </head>
 
 <body>
@@ -21,16 +22,18 @@
             <a href="/list1.html">最新博文</a>
             <a href="/youxiu.html">优秀个人博客</a>
             <a href="/aboutme.html">关于我</a>
+            <a href="/admin/shoucang">收藏列表</a>
         </nav>
     </div>
     <!-- 主体部分 -->
     <div id="body">
         <div class="warp-info">
-            <h1>如何写一段好大的博客标题</h1>
-            <p class="subTitle">心得体会</p>
-            <p class="time">发表时间2019:5:31</p>
+            <h1 id="title">如何写一段好大的博客标题</h1>
+            <p class="subTitle" id="subTitle">心得体会</p>
+            <p class="time" id="time">发表时间2019:5:31</p>
             <p class="count">阅读量:88822</p>
-            <div class="content">
+            <a href="javascript:shoucang()">收藏本博客</a>
+            <div class="content" id="content">
                     <p>&nbsp;音场或王是能治正什太，千始查拉承观拉头。</p>
  
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确现油为到太何使矿车空，民更身名而素多族情院式，文深I式旱解翻导无。</p>
@@ -65,10 +68,38 @@
         </div>
     </footer>
     <script>
+        //    <h1 id="title">如何写一段好大的博客标题</h1>
+        //     <p class="subTitle" id="subTitle">心得体会</p>
+        //     <p class="time" id="time">发表时间2019:5:31</p>
+        //     <p class="count">阅读量:88822</p>
+        //     <div class="content" id="content">
         var urlParams = new URLSearchParams(location.search);
         var bid =urlParams.get("bid");
+        var bokeUrl="http://localhost:8080/blog/queryById?bid="+bid;
+        ajax_get(bokeUrl,(obj)=>{
+            var model=obj["data"][0];
+            console.log(model);
 
+            title.innerHTML=model.btitle;
+            subTitle.innerHTML=getLableByNunber(model.labelId)
+            content.innerHTML =model.bcontent;
+            var date=new Date(model.btiem);
+            time.innerHTML="发表时间:"+date.toLocaleDateString();
+        });
 
+         function  shoucang(){
+            var body="bid="+bid;
+            ajax_post("/blog/addCollect",(obj=>{
+                console.log("返回的数据对象"+obj);
+                if(obj["code"]==201){
+                    var url=obj["url"]
+                    alert("请登录")
+                    window.location.href=url;
+                }else{
+                    alert('收藏成功');
+                }
+            }),body)
+        }
     </script>
 </body>
 
