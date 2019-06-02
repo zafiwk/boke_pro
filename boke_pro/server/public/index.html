@@ -44,7 +44,7 @@
                 <div class="topBtn">
                     <ul>
                         <li class="labelSelect">个人博客</li>
-                        <li value="1"  >笔记心得</li>
+                        <li value="1">笔记心得</li>
                         <li value="2">vue笔记</li>
                         <li value="3">心灵感悟</li>
                         <li value="4">web前沿</li>
@@ -92,7 +92,7 @@
                 <div class="clicklist">
                     <h4>点击排行榜</h4>
                     <hr>
-                    <ul>
+                    <ul id="clicklist_ul">
                         <li>博客一111</li>
                         <li>博客二</li>
                         <li>博客三</li>
@@ -163,7 +163,7 @@
             <div class="ecommend_blogs">
                 <h4>站长推荐</h4>
                 <hr>
-                <ul>
+                <ul id="ecommend_blogs_ul">
                     <li>
                         <img src="1.jpg">
                         <p>十条设计原则教你学会如何设计网页布</p>
@@ -202,8 +202,10 @@
                 </div>
                 <ul>
                     <!-- 置顶 -->
-                   <li class="top" id="newBlog_top">
-                    <a  href="#"><p><span>【顶】</span>别让这些闹心的套路,毁了你的网页设计</p></a>
+                    <li class="top" id="newBlog_top">
+                        <a href="#">
+                            <p><span>【顶】</span>别让这些闹心的套路,毁了你的网页设计</p>
+                        </a>
                         <ul>
                             <li><img src="1.jpg"></li>
                             <li><img src="1.jpg"></li>
@@ -268,7 +270,7 @@
     //精彩专题
 
     function sortByTimeContent_loaddata(typeId) {
-        ajax_get("http://localhost:8080/blog/queryByTypeId?typeId=" + typeId, (result) => {
+        ajax_get("/blog/queryByTypeId?typeId=" + typeId, (result) => {
             // console.log(result);
             var dataArray = result["data"];
             var html = "";
@@ -277,7 +279,7 @@
                 var imgs = parseImgUrlByContent(model.bcontent);
                 var subContent = "";
                 var content = deleteHTMLStr(model.bcontent);
-                console.log("处理html元素后的值:" + content);
+                // console.log("处理html元素后的值:" + content);
                 if (content.length > 38) {
                     subContent = content.substr(0, 38) + "...";
                 } else {
@@ -299,6 +301,48 @@
     sortByTimeContent_loaddata(1);
 
     getTopBoke(newBlog_top)
+
+
+    getclickTop4();
+
+    loadEcommendBlogsData();
+
+    function getblogData() {
+        var url = "http://localhost:8080/blog/getblog?count=2";
+        ajax_get(url, (obj) => {
+            var dataArray = obj["data"];
+            var liArray = document.getElementsByClassName("common");
+            console.log(liArray);
+            for (let i = 0; i < dataArray.length; i++) {
+                var model = dataArray[i];
+                var li = liArray[i];
+
+                var imgs = parseImgUrlByContent(model.bcontent);
+                         
+                var subContent = "";
+                var content = deleteHTMLStr(model.bcontent);
+                if (content.length > 100) {
+                    subContent = content.substr(0, 100) + "...";
+                } else {
+                    subContent = content;
+                }
+                var label = getLableByNunber(model.labelId)
+                var date = new Date(model.btiem);
+                li.innerHTML = `
+                     <h3>${model.btitle}</h3>
+                        <img src="${imgs[0]}">
+                        <p>${subContent}
+                        </p>
+                        <div class="footer">
+                            <img src="1.jpg" /><span>王康 ${date.toLocaleDateString()}</span><span>【<a href="#">标签一</a>】</span>
+                        </div>
+                        <a href="/info.html?bid=${model.bid}">阅读更多</a>
+                
+                `
+            }
+        });
+    }
+    getblogData()
 </script>
 
 </html>

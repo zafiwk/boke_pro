@@ -187,4 +187,40 @@ router.post("/deleteCollect", (req, res) => {
     //     }
     // });
 });
+
+//获取点击量前4博客
+router.get("/getClickTop4",(req,res)=>{
+    pool.query("select bid,btitle from blogs  order by bclick desc limit 0,4 ",(error,result)=>{
+        if(error)
+            throw error;
+        res.send({code:200,msg:"点击量数前4据查询成功",data:result})
+    });
+});
+
+//获取站长推荐
+router.get("/commenblog",(req,res)=>{
+    pool.query("select * from blogs where bid in (select blogId from ecommend_blogs order by orderId ) limit 0,7",(error,result)=>{
+        if(error)
+            throw error;
+        res.send({code:200,msg:"站长推荐查询成功",data:result});
+
+    });
+})
+
+
+//按照时间顺序获取boke
+router.get("/getblog",(req,res)=>{
+    var count =req.query.count;
+    console.log("count:"+count);
+    pool.query("select * from blogs order by btiem desc limit 0,? ",[parseInt(count)],(error,result)=>{
+        if(error)
+            throw error;
+        if(result.length>0){
+            res.send({code:200,msg:"时间降序查询boke成功",data:result});
+        }else{
+            res.send({code:300,msg:"查询博客数据异常"});
+        }
+        // res.send(result);
+    });
+});
 module.exports = router;

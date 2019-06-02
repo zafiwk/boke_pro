@@ -2,7 +2,7 @@ function ajax_get(url, backCall) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("返回的数据:"+xhr.responseText)
+            // console.log("返回的数据:"+xhr.responseText)
             var obj = JSON.parse(xhr.responseText);
             if (obj["code"] == 300) {
                 var msg = obj["msg"] + ",请刷新页面"
@@ -19,7 +19,7 @@ function ajax_post(url, backCall, bodydata) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log("返回的数据:"+xhr.responseText)
+            // console.log("返回的数据:"+xhr.responseText)
             var obj = JSON.parse(xhr.responseText);
             if (obj["code"] == 300) {
                 var msg = obj["msg"] + ",请刷新页面"
@@ -103,7 +103,7 @@ function  getTopBoke(element){
         }
         var subContent = "";
         var content = deleteHTMLStr(model.bcontent);
-        console.log("处理html元素后的值:" + content);
+        // console.log("处理html元素后的值:" + content);
         if (content.length > 200) {
                 subContent = content.substr(0, 200) + "...";
         } else {
@@ -126,4 +126,56 @@ function  getTopBoke(element){
         `
         element.innerHTML=html;
     });
+}
+
+
+
+function getclickTop4(){
+    ajax_get("/blog/getClickTop4",(obj)=>{
+        var dataArray=obj["data"];
+        var html ="";
+        for(let i=0;i<dataArray.length;i++){
+            var model=dataArray[i];
+            var titlt = ""
+            if(model.btitle.length>13){
+                titlt=model.btitle.substr(0,13)+"...";
+            }else{
+                titlt=model.btitle;
+            }
+            html=html +`
+            <li>
+            <a href="/info.html?bid=${model.bid}">${titlt}</a>
+            </li>
+            `
+        }
+        clicklist_ul.innerHTML = html;
+    });
+
+}
+
+
+
+function loadEcommendBlogsData(){
+    ajax_get("/blog/commenblog",(obj)=>{
+        var dataArray=obj["data"];
+        var html = "";
+        for(let i=0;i<dataArray.length;i++){
+            var model =dataArray[i];
+            var title="";
+            var imgs=parseImgUrlByContent(model.bcontent);
+            if(model.btitle.length>18){
+                title=model.btitle.substr(0,18)+"...";
+            }else{
+                title=model.btitle;
+            }
+            html = html +`
+            <li>
+                <img src="${imgs[0]}">
+                <p><a href="/info.html?bid=${model.bid}">${title}</a></p>
+            </li>
+            `
+        }
+        ecommend_blogs_ul.innerHTML =html;
+    });
+   
 }

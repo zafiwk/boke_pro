@@ -45,7 +45,7 @@
             <div class="clicklist">
                 <h4>点击排行榜</h4>
                 <hr>
-                <ul>
+                <ul  id="clicklist_ul">
                     <li>博客一</li>
                     <li>博客二</li>
                     <li>博客三</li>
@@ -57,7 +57,7 @@
             <div class="ecommend_blogs">
                 <h4>站长推荐</h4>
                 <hr>
-                <ul>
+                <ul id="ecommend_blogs_ul">
                     <li>
                         <img src="1.jpg">
                         <p>十条设计原则教你学会如何设计网页布</p>
@@ -469,6 +469,9 @@
         sortByTimeContent_loaddata(2, sortByTimeContent_list2);
         sortByTimeContent_loaddata(3, sortByTimeContent_list3);
         sortByTimeContent_loaddata(4, sortByTimeContent_list4);
+
+        getclickTop4();
+        loadEcommendBlogsData();
     </script>
 </body>
 

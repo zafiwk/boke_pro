@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>最新博客</title>
     <link rel="stylesheet" href="./css/mybase.css" />
+    <script src="/js/myjs.js"></script>
 </head>
 
 <body>
@@ -176,7 +177,7 @@
             <div class="clicklist">
                 <h4>点击排行榜</h4>
                 <hr>
-                <ul>
+                <ul id="clicklist_ul">
                     <li>博客一</li>
                     <li>博客二</li>
                     <li>博客三</li>
@@ -188,7 +189,7 @@
             <div class="ecommend_blogs">
                 <h4>站长推荐</h4>
                 <hr>
-                <ul>
+                <ul id="ecommend_blogs_ul">
                     <li>
                         <img src="1.jpg">
                         <p>十条设计原则教你学会如何设计网页布</p>
@@ -242,7 +243,8 @@
 
     </footer>
     <script>
-
+        getclickTop4();
+        loadEcommendBlogsData();
     </script>
 </body>
 
