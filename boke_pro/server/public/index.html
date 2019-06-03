@@ -300,49 +300,15 @@
 
     sortByTimeContent_loaddata(1);
 
-    getTopBoke(newBlog_top)
+    
 
 
     getclickTop4();
 
     loadEcommendBlogsData();
 
-    function getblogData() {
-        var url = "http://localhost:8080/blog/getblog?count=2";
-        ajax_get(url, (obj) => {
-            var dataArray = obj["data"];
-            var liArray = document.getElementsByClassName("common");
-            console.log(liArray);
-            for (let i = 0; i < dataArray.length; i++) {
-                var model = dataArray[i];
-                var li = liArray[i];
-
-                var imgs = parseImgUrlByContent(model.bcontent);
-                         
-                var subContent = "";
-                var content = deleteHTMLStr(model.bcontent);
-                if (content.length > 100) {
-                    subContent = content.substr(0, 100) + "...";
-                } else {
-                    subContent = content;
-                }
-                var label = getLableByNunber(model.labelId)
-                var date = new Date(model.btiem);
-                li.innerHTML = `
-                     <h3>${model.btitle}</h3>
-                        <img src="${imgs[0]}">
-                        <p>${subContent}
-                        </p>
-                        <div class="footer">
-                            <img src="1.jpg" /><span>王康 ${date.toLocaleDateString()}</span><span>【<a href="#">标签一</a>】</span>
-                        </div>
-                        <a href="/info.html?bid=${model.bid}">阅读更多</a>
-                
-                `
-            }
-        });
-    }
-    getblogData()
+    getTopBoke(newBlog_top)
+    getblogData(2)
 </script>
 
 </html>

@@ -68,9 +68,18 @@ router.post("/login",(req,res)=>{
     // var p=__dirname;
     // var filePath= path.relative(p,"..");
     // console.log(filePath);
-    var rootPath=path.dirname(__dirname);
-    var filePath=rootPath+path.sep+"input.html";
-    res.sendFile(filePath);
+    var pwd=req.body.pwd;
+    pool.query("select *  from user where emain = 'root' and pwd = ?",[pwd],(error,result)=>{
+        if(error)
+            throw error;
+        if(result.length>0){
+            var rootPath=path.dirname(__dirname);
+            var filePath=rootPath+path.sep+"input.html";
+            res.sendFile(filePath);
+        }else{
+            res.redirect("/error.html")
+        }
+    });
 });
 
 router.get("/shoucang",(req,res)=>{
@@ -79,7 +88,7 @@ router.get("/shoucang",(req,res)=>{
         var filePath=rootPath+path.sep+"shoucang.html";
         res.sendFile(filePath);
     }else{
-        res.redirect("/userlogin.html");
+        res.redirect("/error.html");
     }
 });
 
