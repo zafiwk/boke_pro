@@ -88,7 +88,7 @@ router.get("/shoucang",(req,res)=>{
         var filePath=rootPath+path.sep+"shoucang.html";
         res.sendFile(filePath);
     }else{
-        res.redirect("/error.html");
+        res.redirect("/admin.html");
     }
 });
 
