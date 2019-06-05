@@ -100,6 +100,11 @@
                 }
             }),body)
         }
+        var urlParams = new URLSearchParams(location.search);
+        var bid =urlParams.get("bid");
+        ajax_post("http://localhost:8080/blog/updateClick",(result)=>{
+            
+        },"bid="+bid);
     </script>
 </body>
 

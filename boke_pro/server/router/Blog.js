@@ -131,6 +131,7 @@ router.post("/addCollect", (req, res) => {
     }
 });
 
+
 //获取所有收藏博客
 router.post("/getAllCollect", (req, res) => {
     var uid = req.session.uid;
@@ -161,6 +162,7 @@ router.post("/getAllCollect", (req, res) => {
         res.send({code:200,msg:"获取",data:result});
     });
 });
+
 //删除收藏
 router.post("/deleteCollect", (req, res) => {
     var bid = req.body.bid;
@@ -222,5 +224,20 @@ router.get("/getblog",(req,res)=>{
         }
         // res.send(result);
     });
+});
+
+
+
+router.post("/updateClick",(req,res)=>{
+    var bid = req.body.bid;
+    pool.query("select bclick from blogs where bid=?",[bid],(error,result)=>{
+        if(error)
+            throw error;
+        if(result.length>0){
+            var clickCount = perseInt(result[0]["bclick"])+1;
+            console.log("点击量"+clickCount);
+
+        }
+    })
 });
 module.exports = router;
