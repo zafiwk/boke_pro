@@ -213,7 +213,7 @@ router.get("/commenblog",(req,res)=>{
 //按照时间顺序获取boke
 router.get("/getblog",(req,res)=>{
     var count =parseInt(req.query.count);
-    console.log("count:"+count);
+//   console.log("count:"+count);
     pool.query("select * from blogs order by btiem desc limit 0,? ",[count],(error,result)=>{
         if(error)
             throw error;
@@ -235,8 +235,12 @@ router.post("/updateClick",(req,res)=>{
             throw error;
         if(result.length>0){
             var clickCount = parseInt(result[0]["bclick"])+1;
-            console.log("点击量"+clickCount);
-
+            // console.log("点击量clickCount:"+clickCount);
+            pool.query("update blogs set bclick=? where bid=?",[clickCount,bid],(error,result)=>{
+                if(error)
+                    throw error;
+                res.send({code:200,msg:"修改点击量成功",data:clickCount})
+            });
         }
     })
 });

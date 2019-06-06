@@ -31,7 +31,7 @@
             <h1 id="title">如何写一段好大的博客标题</h1>
             <p class="subTitle" id="subTitle">心得体会</p>
             <p class="time" id="time">发表时间2019:5:31</p>
-            <p class="count">阅读量:88822</p>
+            <p class="count" id="count">阅读量:88822</p>
             <a href="javascript:shoucang()">收藏本博客</a>
             <div class="content" id="content">
                     <p>&nbsp;音场或王是能治正什太，千始查拉承观拉头。</p>
@@ -103,7 +103,8 @@
         var urlParams = new URLSearchParams(location.search);
         var bid =urlParams.get("bid");
         ajax_post("http://localhost:8080/blog/updateClick",(result)=>{
-            
+            console.log("点击量:"+result["data"]);
+            count.innerHTML="点击量:"+result["data"];
         },"bid="+bid);
     </script>
 </body>
