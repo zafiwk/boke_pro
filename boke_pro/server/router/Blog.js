@@ -213,8 +213,12 @@ router.get("/commenblog",(req,res)=>{
 //按照时间顺序获取boke
 router.get("/getblog",(req,res)=>{
     var count =parseInt(req.query.count);
+    var start =parseInt(req.query.start);
+    if(isNaN(start)){
+        start = 0;
+    }
 //   console.log("count:"+count);
-    pool.query("select * from blogs order by btiem desc limit 0,? ",[count],(error,result)=>{
+    pool.query("select * from blogs order by btiem desc limit ?,? ",[start,count],(error,result)=>{
         if(error)
             throw error;
         if(result.length>0){
@@ -244,4 +248,14 @@ router.post("/updateClick",(req,res)=>{
         }
     })
 });
+
+
+router.get("/getCount",(req,res)=>{
+    pool.query("select count(bid) from blogs",(error,result)=>{
+        if(error)
+            throw error;
+        // console.log("获取总数"+result[0]);
+        res.send({code:200,msg:result});
+    })
+})
 module.exports = router;

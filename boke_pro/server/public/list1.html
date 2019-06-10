@@ -153,7 +153,7 @@
             </ul>
 
             <!-- 分页模块 -->
-            <div class="page">
+            <div class="page"  id="page">
                 <a href="#" class="prev"> 上一页</a>
                 <a href="#">1</a>
                 <a href="#" class="active">2</a>
@@ -248,6 +248,27 @@
 
         getTopBoke(newBlog_top)
         getblogData(9)
+        ajax_get("http://localhost:8080/blog/getCount",(result)=>{
+            var count =parseInt(result[0]["count(bid)"]);
+            if(isNaN(count)){
+                return;
+            }
+            var pageSize=(count-1)/9+1;
+
+            // <a href="#" class="prev"> 上一页</a>
+            //     <a href="#">1</a>
+            //     <a href="#" class="active">2</a>
+            //     <a href="#">3</a>
+            //     <a href="#">4</a>
+            //     <a href="#">5</a>
+            //     <a href="#" class="next">下一页</a>
+           var html = ""
+           html += html +`<a href="#" class="prev"> 上一页</a>`
+           for(let i=0;i<pageSize;i++){
+               html +=   `<a href="#">${i}</a>`
+           }
+           html += html +` <a href="#" class="next">下一页</a>`;
+        })
     </script>
 </body>
 

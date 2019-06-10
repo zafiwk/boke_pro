@@ -32,7 +32,8 @@ hr {
 /* ul{
     overflow: hidden;
 } */
-p,
+
+/* p,
 h1,
 h2,
 h3,
@@ -41,13 +42,13 @@ h5,
 h6,
 li,
 a,
-span{
+span{ */
     /* overflow: hidden;
     text-overflow: ellipsis; */
     /* display: -webkit-box;
     -webkit-box-orient: vertical; */
     /* -webkit-line-clamp:3; 需要实现这个*/ 
-}
+/* } */
 
 .borderRadius {
     border-radius: 5px;
