@@ -118,11 +118,73 @@ div.top>span {
     width: 900px;
     height: 260px;
     display: inline-block;
-    text-align: center;
+    /* text-align: center; */
     background: white;
     border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+.banner_left,.banner_center,.banner_right,.banner_left_to_center,.banner_center_to_right,.banner_right_to_hide,.banner_start{
+    width: 450px;
+    height: 260px;
+}
+.banner_start{
+    position: absolute;
+    left: -450px;
+    top: 0px;
+    z-index: 0;
+}
+.banner_start_to_left{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    transition: all 1s linear;
+}
+.banner_left{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
 }
 
+.banner_left_to_center{
+    position: absolute;
+    top:0;
+    transition: all 1.0S linear;
+    /* transform: translateX(225px); */
+    left: 225px;
+    z-index:3;
+}
+
+.banner_center{
+    position: absolute;
+    left: 225px;
+    top: 0px;
+    z-index: 3;
+}
+.banner_center_to_right{
+    position: absolute;
+    top:0;
+    transition: all 1.0S linear;
+    /* transform: translateX(450px); */
+    left: 450px;
+    z-index: 2;
+}
+.banner_right{
+    position: absolute;
+    left:450px;
+    top: 0px;
+    z-index: 2;
+}
+.banner_right_to_hide{
+    position: absolute;
+    top:0;
+    transition: all 1.0S linear;
+    /* transform: translate(-450px); */
+    left: 900px;
+    z-index: 1;
+}
 .bodyTop>.myCard {
     width: 281px;
     height: 260px;
