@@ -255,7 +255,7 @@ router.get("/getCount",(req,res)=>{
         if(error)
             throw error;
         // console.log("获取总数"+result[0]);
-        res.send({code:200,msg:result});
+        res.send({code:200,msg:"查询数据总数成功",data:result});
     })
 })
 module.exports = router;
