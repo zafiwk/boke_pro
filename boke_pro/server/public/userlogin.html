@@ -53,23 +53,40 @@
     
     function testUname(){
         if(uname.value){
-            isallow =true;
-            luname.innerHTML="";
+
+            var reg=/^\w{4,10}$/
+            if(reg.test(uname.value)){
+                isallow =true;
+                luname.innerHTML="";
+            }else{
+                isallow =false;
+                luname.innerHTML="用户名4-10位之间,字母或者数字组成";
+            }
         }else{
             isallow=false;
             luname.innerHTML="用户名为空";
         }
     }
 
+
     function testPwd(){
         if(pwd.value){
-            isallow=true;
-            lpwd.innerHTML="";
+
+            var reg=/^\w{6,10}$/
+            if(reg.test(pwd.value)){
+                isallow=true;
+                lpwd.innerHTML="";
+            }else{
+                isallow =false;
+                lpwd.innerHTML="密码6-10位之间,字母或数字组成";
+            }
+          
         }else{
             isallow=false;
             lpwd.innerHTML="密码为空";
         }
     }
+
     function userLogin(){
         if(!isallow){
             return 

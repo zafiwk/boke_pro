@@ -63,8 +63,14 @@
                 isNotLogin=false;
                 lpwd.innerHTML="密码不能为空";
             }else{
-                isNotLogin=true;
-                lpwd.innerHTML="";
+                var reg=/^\w{4,10}$/
+                if(reg.test(pwd.value)){
+                    isNotLogin=true;
+                    lpwd.innerHTML="";
+                }else{
+                    isNotLogin=false;
+                    lpwd.innerHTML="密码6-10位之间,字母或数字组成";
+                }
             }
         }
         function testUname() {
@@ -73,8 +79,15 @@
                 luname.innerHTML = "用户名为空";
                 return
             }else{
-                isNotLogin=true;
-                luname.innerHTML="";
+                var reg=/^\w{4,10}$/
+                if(reg.test(uname.value)){
+                    isNotLogin=true;
+                    luname.innerHTML="";
+                }else{
+                    isNotLogin=false;
+                    luname.innerHTML="用户名4-10位之间,字母或者数字组成";
+                    return ;
+                }
             }
             var body = "uname=" + uname.value;
             ajax_post("/admin/userIsExists", (obj) => {
