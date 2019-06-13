@@ -131,7 +131,7 @@ div.top>span {
 }
 .banner_start{
     position: absolute;
-    left: -450px;
+    left: -225px;
     top: 0px;
     z-index: 0;
 }
@@ -141,12 +141,15 @@ div.top>span {
     top: 0;
     z-index: 1;
     transition: all 1s linear;
+    transform: rotateZ(90deg);   
 }
 .banner_left{
     position: absolute;
     left: 0;
     top: 0;
     z-index: 1;
+    /* perspective: 100px;
+    transform: rotateZ(90deg) */
 }
 
 .banner_left_to_center{

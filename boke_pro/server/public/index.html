@@ -317,29 +317,29 @@
     // <img src="2.jpg" class="banner_center" id="banner_center">
     // <img src="3.jpg" class="banner_right" id="banner_right">
 
-    var nodeArray=[banner_start,banner_left,banner_center,banner_right]
-    function bannerTime(){
-        setTimeout(()=>{
-            console.log("定时器开始调用");
-            nodeArray[0].className="banner_start_to_left";
-            nodeArray[1].className="banner_left_to_center";
-            nodeArray[2].className="banner_center_to_right";
-            nodeArray[3].className="banner_right_to_hide";
-            setTimeout(()=>{
-                nodeArray[3].className="banner_start";
-                var length =nodeArray.length;
-                var node=nodeArray[0];
-                for(let i=1;i<length;i++){
-                    let tNodel=nodeArray[i];
-                    nodeArray[i]=node;
-                    node=tNodel;
-                }
-                nodeArray[0]=node;
-            },2000);
-            bannerTime();
-        },5000)
-    }
-    bannerTime();
+    // var nodeArray=[banner_start,banner_left,banner_center,banner_right]
+    // function bannerTime(){
+    //     setTimeout(()=>{
+    //         console.log("定时器开始调用");
+    //         nodeArray[0].className="banner_start_to_left";
+    //         nodeArray[1].className="banner_left_to_center";
+    //         nodeArray[2].className="banner_center_to_right";
+    //         nodeArray[3].className="banner_right_to_hide";
+    //         setTimeout(()=>{
+    //             nodeArray[3].className="banner_start";
+    //             var length =nodeArray.length;
+    //             var node=nodeArray[0];
+    //             for(let i=1;i<length;i++){
+    //                 let tNodel=nodeArray[i];
+    //                 nodeArray[i]=node;
+    //                 node=tNodel;
+    //             }
+    //             nodeArray[0]=node;
+    //         },2000);
+    //         bannerTime();
+    //     },5000)
+    // }
+    // bannerTime();
     
 </script>
 
