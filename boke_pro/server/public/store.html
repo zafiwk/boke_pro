@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <link rel="stylesheet" href="./css/mybase.css">
+    <!-- <script src="/js/myjs.js"></script> -->
+</head>
+
+<body>
+    <!-- 渐变色 -->
+    <header class="topLine"></header>
+    <!-- 导航栏 -->
+    <div class="top">
+        <span>王康的个人博客</span>
+        <nav>
+            <a href="/index.html">首页</a>
+            <a href="/list.html">个人博客日记</a>
+            <a href="/list1.html">最新博文</a>
+            <a href="/youxiu.html">优秀个人博客</a>
+            <a href="/aboutme.html">关于我</a>
+            <a href="/admin/shoucang">收藏列表</a>
+            <a href="/store.html">商城</a>
+        </nav>
+    </div>
+    <!-- 主体部分 -->
+    <div id="body">
+        <ul class="catalog">
+            <li><a href="#">教育</a></li>
+            <li><a href="#">小说</a></li>
+            <li><a href="#">文艺</a></li>
+            <li><a href="#">青春文学/动漫·幽默</a></li>
+            <li><a href="#">人文社科</a></li>
+            <li><a href="#">经管</a></li>
+            <li><a href="#">科技</a></li>
+        </ul>
+        <div class="top_content">
+            <!-- 教育 -->
+            <div class="top_content_item1">
+                <ul>
+                    <li><a href="javascript:;">教育</li>
+                    <li><a href="javascript:;">经济学原理(第七版)</li>
+                    <li><a href="javascript:;">公司理财(原书低11版本)</li>
+                    <li><a href="javascript:;">高等数学(第七版)上册</li>
+                </ul>
+            </div>
+            <!-- 小说 -->
+            <div class="top_content_item2">
+                <ul>
+                    <li><a href="javascript:;">小说</a></li>
+                    <li><a href="javascript:;">中国当代小说</a></li>
+                    <li><a href="javascript:;">中国近现代小说</a></li>
+                    <li><a href="javascript:;">中国古典小说</a></li>
+                    <li><a href="javascript:;">港澳台小说</a></li>
+                    <li><a href="javascript:;">外国小说侦探</a></li>
+                </ul>
+            </div>
+            <!-- 文艺 -->
+            <div class="top_content_item3">
+                <ul>
+                    <li><a href="javascript:;">文艺</a></li>
+                    <li><a href="javascript:;">文集纪实文学</a></li>
+                    <li><a href="javascript:;">文学理论</a></li>
+                    <li><a href="javascript:;">中国古诗词</a></li>
+                    <li><a href="javascript:;">中国现当代诗歌</a></li>
+                    <li><a href="javascript:;">外国诗歌</a></li>
+                    <li><a href="javascript:;">中国古代随笔</a></li>
+                </ul>
+            </div>
+            <!-- 青春文学/动漫·幽默 -->
+            <div class="top_content_item4">
+                <ul>
+                    <li><a href="javascript:;">青春文学/动漫·幽默</a></li>
+                    <li><a href="javascript:;">爱情/情感</a></li>
+                    <li><a href="javascript:;">叛逆/成长</a></li>
+                    <li><a href="javascript:;">悬疑/惊悚</a></li>
+                    <li><a href="javascript:;">娱乐/偶像</a></li>
+                    <li><a href="javascript:;">爆笑/无厘头</a></li>
+                    <li><a href="javascript:;">玄幻/新武侠/魔幻/科幻</a></li>
+                </ul>
+            </div>
+
+            <!-- 人文社科 -->
+            <div class="top_content_item5">
+                <ul>
+                    <li><a href="javascript:;">人文社科</a></li>
+                    <li><a href="javascript:;">历史普及读物</a></li>
+                    <li><a href="javascript:;">中国史</a></li>
+                    <li><a href="javascript:;">史家名著</a></li>
+                    <li><a href="javascript:;">文物考古</a></li>
+                    <li><a href="javascript:;">史学理论</a></li>
+                    <li><a href="javascript:;">历史随笔</a></li>
+                </ul>
+            </div>
+
+            <!-- 经管 -->
+            <div class="top_content_item6">
+                <ul>
+                    <li><a href="javascript:;">经管</a></li>
+                    <li><a href="javascript:;">一般管理学</a></li>
+                    <li><a href="javascript:;">会计</a></li>
+                    <li><a href="javascript:;">市场/营销</a></li>
+                    <li><a href="javascript:;">战略管理</a></li>
+                    <li><a href="javascript:;">生产与运作管理</a></li>
+                    <li><a href="javascript:;">管理信息系统</a></li>
+                </ul>
+            </div>
+
+            <!-- 经管 -->
+            <div class="top_content_item7">
+                <ul>
+                    <li><a href="javascript:;">科技</a></li>
+                    <li><a href="javascript:;">计算机理论</a></li>
+                    <li><a href="javascript:;">硬件 外部设备 维修</a></li>
+                    <li><a href="javascript:;">操作系统/系统开发</a></li>
+                    <li><a href="javascript:;">数据库</a></li>
+                    <li><a href="javascript:;">程序设计</a></li>
+                    <li><a href="javascript:;">网络与数据通信</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        (() => {
+            var  lis=document.querySelectorAll(".catalog>li")
+            for(let i=0;i<lis.length;i++){
+                let  li =lis[i];
+                let className=".top_content_item"+(i+1);
+                li.onmouseover=function(){
+                    //  console.log(this.innerHTML);
+                    let showLi=document.querySelector(".top_content_item_show");
+                    if(showLi){
+                        showLi.className=showLi.className.replace("top_content_item_show","");
+                    }
+                    console.log(className);
+                    let item = document.querySelector(className);
+                    console.log(item);
+                    item.className=item.className + " top_content_item_show";
+                    console.log(li);
+                }
+            }
+
+
+        })();
+
+    </script>
+</body>
+
+</html>
