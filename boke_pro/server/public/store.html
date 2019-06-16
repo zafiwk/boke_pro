@@ -28,16 +28,16 @@
     </div>
     <!-- 主体部分 -->
     <div id="body">
-        <ul class="catalog">
-            <li><a href="#">教育</a></li>
-            <li><a href="#">小说</a></li>
-            <li><a href="#">文艺</a></li>
-            <li><a href="#">青春文学/动漫·幽默</a></li>
-            <li><a href="#">人文社科</a></li>
-            <li><a href="#">经管</a></li>
-            <li><a href="#">科技</a></li>
-        </ul>
-        <div class="top_content">
+        <div class="catalog">
+            <ul class="">
+                <li><a href="#" class="initial_white">教育</a></li>
+                <li><a href="#" class="initial_white">小说</a></li>
+                <li><a href="#" class="initial_white">文艺</a></li>
+                <li><a href="#" class="initial_white">青春文学/动漫·幽默</a></li>
+                <li><a href="#" class="initial_white">人文社科</a></li>
+                <li><a href="#" class="initial_white">经管</a></li>
+                <li><a href="#" class="initial_white">科技</a></li>
+            </ul>
             <!-- 教育 -->
             <div class="top_content_item1">
                 <ul>
@@ -58,6 +58,7 @@
                     <li><a href="javascript:;">外国小说侦探</a></li>
                 </ul>
             </div>
+
             <!-- 文艺 -->
             <div class="top_content_item3">
                 <ul>
@@ -121,26 +122,40 @@
                     <li><a href="javascript:;">网络与数据通信</a></li>
                 </ul>
             </div>
+            <div class="top_content">
 
+
+            </div>
         </div>
+
+
     </div>
     <script>
         (() => {
-            var  lis=document.querySelectorAll(".catalog>li")
-            for(let i=0;i<lis.length;i++){
-                let  li =lis[i];
-                let className=".top_content_item"+(i+1);
-                li.onmouseover=function(){
-                    //  console.log(this.innerHTML);
-                    let showLi=document.querySelector(".top_content_item_show");
-                    if(showLi){
-                        showLi.className=showLi.className.replace("top_content_item_show","");
+            var lis = document.querySelectorAll(".catalog>ul>li")
+            for (let i = 0; i < lis.length; i++) {
+                let li = lis[i];
+                li.onmouseover = function () {
+                    let showLi = document.querySelector(".top_content_item_show");
+                    if (showLi) {
+                        showLi.className = showLi.className.replace("top_content_item_show", "");
                     }
-                    console.log(className);
+
+                    let className = ".top_content_item" + (i + 1);
                     let item = document.querySelector(className);
-                    console.log(item);
-                    item.className=item.className + " top_content_item_show";
-                    console.log(li);
+                    item.className = item.className + " top_content_item_show";
+                    for (let t = 0; t < lis.length; t++) {
+                        lis[t].style.backgroundColor = "#292d32";
+                        let a = lis[t].children[0];
+                        a.style.color = "#fff";
+                        a.className = "initial_white";
+                        lis[t].style.width = "270px"
+                    }
+                    this.style.backgroundColor = "#fff";
+                    let a = this.children[0];
+                    a.style.color = "#000";
+                    a.className = " initial_black";
+                    this.style.width = "271px";
                 }
             }
 

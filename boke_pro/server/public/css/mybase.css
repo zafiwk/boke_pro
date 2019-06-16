@@ -1624,45 +1624,59 @@ div.top>span {
 /*商城*/
 
 .catalog{
+    width: 1200px;
+    background: white;
+}
+.catalog>ul{
     list-style-type: none;
     /* display: inline-block; */
     /* float: left; */
     left: 0;
     top: 0;
-    z-index: 10;
+    z-index: 100;
 }
 
-.catalog>li{
+.catalog >ul>li{
     background: #292d32;
     font-size: 15px;
     height: 63px;
-    border-bottom: 1px solid #1c252d;
+    /* border-bottom: 1px solid #1c252d; */
     cursor: pointer;
     line-height: 63px;
     padding-left: 30px;
     width: 270px;
     position: relative;
-
+    z-index: 20;
+    border-left: 1px solid #292d32;
+    border-top: 1px solid #292d32;
+    border-bottom: 1px  solid #292d32;
 }
-.catalog>li>a{
+.catalog>ul>li>a{
     color:white;
     width: 240px;
     display: inline-block;
 
 }
-.catalog>li>a::after{
+.initial_white::after{
     content: ">";
     color: white;
     display:inline-block;
     position: absolute;
     right: 30px;
 }
-.catalog>li:first-child{
+.initial_black::after{
+    content: ">";
+    color: black;
+    display:inline-block;
+    position: absolute;
+    right: 30px;
+}
+.catalog li:first-child{
     border-top-left-radius: 5px;
     /* width: 330px; */
     /* background: rebeccapurple; */
 }
-.catalog>li:last-child{
+.catalog li:last-child{
     border-bottom-left-radius: 5px;
 }
 
@@ -1672,15 +1686,12 @@ div.top>span {
     background: white;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    z-index: 0;
+    z-index: 1;
     position: absolute;
     top: 0;
     right: 0;
 }
 
-.top_content ul{
-    list-style-type: none;
-}
 
 .top_content_item1{
     width: 810px;
@@ -1698,7 +1709,39 @@ div.top>span {
     display: none;
     width: 600px;
     height: 250px;
-    background: red; 
+    position: absolute;
+    left: 300px;
+    border: 1px solid black;
+    /* background: red; */
+    z-index: 2;
+    padding-left: 20px;
+   
+}
+.top_content_item1 ul,.top_content_item2 ul,.top_content_item3 ul,.top_content_item4 ul,.top_content_item5 ul,.top_content_item6 ul,.top_content_item7 ul{
+    list-style-type: none;
+
+}
+
+.top_content_item1{
+    top: 0px;
+}
+.top_content_item2{
+    top: 65px;
+}
+.top_content_item3{
+    top: 130px;
+}
+.top_content_item4{
+    top:195px;
+}
+.top_content_item5{
+    top:73px;
+}
+.top_content_item6{
+    top:138px;
+}
+.top_content_item7{
+    top:203px;
 }
 
 .top_content_item_show{
