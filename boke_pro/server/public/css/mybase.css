@@ -141,7 +141,7 @@ div.top>span {
     top: 0;
     z-index: 1;
     transition: all 1s linear;
-    transform: rotateZ(90deg);   
+    /* transform: rotateZ(90deg);    */
 }
 .banner_left{
     position: absolute;
@@ -1712,7 +1712,9 @@ div.top>span {
     position: absolute;
     left: 300px;
     border: 1px solid black;
+	border-left:2px solid black;
     /* background: red; */
+    background: white;
     z-index: 2;
     padding-left: 20px;
    
@@ -1746,4 +1748,48 @@ div.top>span {
 
 .top_content_item_show{
     display: inline-block;
+}
+
+.book{
+    /* width: 100%; */
+    padding: 40px;
+    /* padding-left: 200px; */
+    padding-right: 200px;
+    width: 960px;
+    height:460 px;
+    margin-top: 20px;
+    background: white;
+    border-radius: 5px;
+}
+.book>ul{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+}
+ .book  li{
+    margin-right: 15px;
+    margin-bottom: 10px;
+} 
+.book>ul>li>img{
+    width: 150px;
+    width: 150px;
+}
+.book li>.title{
+    font-size: 14px;
+    height: 14;
+    padding-left: 25px;
+}
+.book li>.work{
+    font-size: 14px;
+    color: #aaaaaa;
+    margin: 5px 0 5px 0;
+    height: 14px;
+    padding-left: 25px;
+}
+.book li>.price{
+    font-size: 14px;
+    color: red;
+    font-weight:bold;
+    padding-left: 25px;
 }

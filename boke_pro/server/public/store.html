@@ -5,8 +5,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>首页</title>
+    <title>商城</title>
     <link rel="stylesheet" href="./css/mybase.css">
+    <style>
+        #banner {
+            width: 900px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #ul-imgs {
+            list-style: none;
+            width: 4500px;
+            margin-left: 0px;
+
+        }
+
+        #ul-imgs.transition {
+            transition: all .5S linear;
+        }
+
+        #ul-imgs>li {
+            width: 900px;
+            float: left;
+        }
+
+        #ul-imgs img {
+            width: 900px;
+            height: 455px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        #ul-idxs {
+            width: 100px;
+            margin: 0 auto;
+            list-style-type: none;
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            margin-left: -50px;
+            /* background: red; */
+        }
+
+        #ul-idxs>li {
+            float: left;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        #ul-idxs>li.active {
+            background: blue;
+        }
+
+        #btn-left,
+        #btn-right {
+            width: 60px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        #btn-left {
+            left: 20px;
+            background-image: url(left_ar.png);
+        }
+
+        #btn-right {
+            right: 20px;
+            background-image: url(right_ar.png);
+        }
+
+        #btn-left:hover,
+        #btn-right:hover {
+            background-size: 40px 70px;
+        }
+    </style>
     <!-- <script src="/js/myjs.js"></script> -->
 </head>
 
@@ -123,12 +204,150 @@
                 </ul>
             </div>
             <div class="top_content">
-
-
+                <div id="banner">
+                    <div id="btn-left"></div>
+                    <ul id="ul-imgs">
+                        <li><a href="javascript:;"><img src="./5.jpg"></a></li>
+                        <li><a href="javascript:;"><img src="./6.jpg"></a></li>
+                        <li><a href="javascript:;"><img src="./7.jpg"></a></li>
+                        <li><a href="javascript:;"><img src="./8.png"></a></li>
+                        <li><a href="javascript:;"><img src="./5.jpg"></a></li>
+                    </ul>
+                    <ul id="ul-idxs">
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <div id="btn-right"></div>
+                </div>
             </div>
         </div>
 
+        <div class="book">
+            <ul>
+                <li>
+                    <img src="./book/d_1.jpg">
+                    <p class="title">人性的弱点</p>
+                    <p class="work">(美)卡耐基 著</p>
+                    <p class="price">￥28.5</p>
+                </li>
+                <li>
+                    <img src="./book/d_2.jpg">
+                    <p class="title">多莱尔的希腊神话</p>
+                    <p class="work">英格丽 多莱尔</p>
+                    <p class="price">￥78.5</p>
+                </li>
+                <li>
+                    <img src="./book/d_3.jpg">
+                    <p class="title">诺奖少年版</p>
+                    <p class="work">海明威 罗曼.罗</p>
+                    <p class="price">￥364.30</p>
+                </li>
+                <li>
+                    <img src="./book/d_4.jpg">
+                    <p class="title">百年童话绘本·精装</p>
+                    <p class="work">(德)格林兄弟</p>
+                    <p class="price">￥394.00</p>
+                </li>
+                <li>
+                    <img src="./book/d_5.jpg">
+                    <p class="title">乌合之众:大众心理</p>
+                    <p class="work">(法)古斯塔夫</p>
+                    <p class="price">￥18.7</p>
+                </li>
+                <li>
+                    <img src="./book/d_6.jpg">
+                    <p class="title">谈判:如何在博弈中</p>
+                    <p class="work">(英)盖温·肯尼</p>
+                    <p class="price">￥36.9</p>
+                </li>
+                <li>
+                    <img src="./book/d_7.jpg">
+                    <p class="title">王阳明传:知行合一</p>
+                    <p class="work">燕山刀客 著</p>
+                    <p class="price">￥39.4</p>
+                </li>
+                <li>
+                    <img src="./book/d_8.jpg">
+                    <p class="title">边城:沈从文小说精</p>
+                    <p class="work">沈从文</p>
+                    <p class="price">￥30.70</p>
+                </li>
+                <li>
+                    <img src="./book/d_9.jpg">
+                    <p class="title">矛盾文学奖得主张炜</p>
+                    <p class="work">张炜</p>
+                    <p class="price">￥60.5</p>
+                </li>
+                <li>
+                    <img src="./book/d_10.jpg">
+                    <p class="title">极简英语思维:你的</p>
+                    <p class="work">杨海英</p>
+                    <p class="price">￥33.4</p>
+                </li>
 
+                <li>
+                    <img src="./book/d_3.jpg">
+                    <p class="title">诺奖少年版</p>
+                    <p class="work">海明威 罗曼.罗</p>
+                    <p class="price">￥364.30</p>
+                </li>
+                <li>
+                    <img src="./book/d_4.jpg">
+                    <p class="title">百年童话绘本·精装</p>
+                    <p class="work">(德)格林兄弟</p>
+                    <p class="price">￥394.00</p>
+                </li>
+                <li>
+                    <img src="./book/d_5.jpg">
+                    <p class="title">乌合之众:大众心理</p>
+                    <p class="work">(法)古斯塔夫</p>
+                    <p class="price">￥18.7</p>
+                </li>
+                <li>
+                    <img src="./book/d_6.jpg">
+                    <p class="title">谈判:如何在博弈中</p>
+                    <p class="work">(英)盖温·肯尼</p>
+                    <p class="price">￥36.9</p>
+                </li>
+                <li>
+                    <img src="./book/d_6.jpg">
+                    <p class="title">谈判:如何在博弈中</p>
+                    <p class="work">(英)盖温·肯尼</p>
+                    <p class="price">￥36.9</p>
+                </li>
+                <li>
+                    <img src="./book/d_7.jpg">
+                    <p class="title">王阳明传:知行合一</p>
+                    <p class="work">燕山刀客 著</p>
+                    <p class="price">￥39.4</p>
+                </li>
+                <li>
+                    <img src="./book/d_8.jpg">
+                    <p class="title">边城:沈从文小说精</p>
+                    <p class="work">沈从文</p>
+                    <p class="price">￥30.70</p>
+                </li>       <li>
+                    <img src="./book/d_6.jpg">
+                    <p class="title">谈判:如何在博弈中</p>
+                    <p class="work">(英)盖温·肯尼</p>
+                    <p class="price">￥36.9</p>
+                </li>
+                <li>
+                    <img src="./book/d_7.jpg">
+                    <p class="title">王阳明传:知行合一</p>
+                    <p class="work">燕山刀客 著</p>
+                    <p class="price">￥39.4</p>
+                </li>
+                <li>
+                    <img src="./book/d_8.jpg">
+                    <p class="title">边城:沈从文小说精</p>
+                    <p class="work">沈从文</p>
+                    <p class="price">￥30.70</p>
+                </li>
+            </ul>
+        </div>
     </div>
     <script>
         (() => {
@@ -136,21 +355,12 @@
             for (let i = 0; i < lis.length; i++) {
                 let li = lis[i];
                 li.onmouseover = function () {
-                    let showLi = document.querySelector(".top_content_item_show");
-                    if (showLi) {
-                        showLi.className = showLi.className.replace("top_content_item_show", "");
-                    }
-
+                    hideContentItem()
                     let className = ".top_content_item" + (i + 1);
                     let item = document.querySelector(className);
                     item.className = item.className + " top_content_item_show";
-                    for (let t = 0; t < lis.length; t++) {
-                        lis[t].style.backgroundColor = "#292d32";
-                        let a = lis[t].children[0];
-                        a.style.color = "#fff";
-                        a.className = "initial_white";
-                        lis[t].style.width = "270px"
-                    }
+                    // console.log(item.getBoundingClientRect());
+                    // console.log(catalog.getBoundingClientRect());
                     this.style.backgroundColor = "#fff";
                     let a = this.children[0];
                     a.style.color = "#000";
@@ -160,8 +370,150 @@
             }
 
 
-        })();
+            var catalog =document.getElementsByClassName("catalog")[0];
+            var catalogRect=catalog.getBoundingClientRect();
+            catalog.onmouseout = function (e) {
+                console.log("onmouseout  e.clientX"+e.clientX);
+                // if(e.clientX>catalogRect.){
+                    // return;
+                // }
+                console.log(e.target.nodeName);
+                // if(e.target.nodeName="LI"){
+                //     return;
+                // }
+                if(e.clientX>(catalogRect.x+301)){
+                    return;
+                }
+                hideContentItem()
+            }
 
+            catalog.onmousemove = function (e) {
+                // console.log(e.target);
+                // console.log(e.nodeName);
+                // console.log(e.clientX, e.clientY);
+                // console.log(catalogRect);
+                if(e.clientX>catalogRect.x&&e.clientY>catalogRect.top&&e.clientY<catalogRect.height&&e.clientX<(catalogRect.x+301)){
+                    return ;
+                }
+                let item = document.querySelector(".top_content_item_show");
+                if(!item){
+                    return ;
+                }
+                var rect= item.getBoundingClientRect();
+                // console.log("----------------------------------------------------------------")
+                // console.log(+rect);
+                if(e.clientY<rect.top||e.clientX<rect.x||e.clientX>rect.right||e.clientY>rect.bottom){
+                    hideContentItem()
+                }
+            }
+
+            function hideContentItem() {
+                let showLi = document.querySelector(".top_content_item_show");
+                if (showLi) {
+                    showLi.className = showLi.className.replace("top_content_item_show", "");
+                }
+                for (let t = 0; t < lis.length; t++) {
+                    lis[t].style.backgroundColor = "#292d32";
+                    let a = lis[t].children[0];
+                    a.style.color = "#fff";
+                    a.className = "initial_white";
+                    lis[t].style.width = "270px"
+                }
+            }
+        })();
+        //轮播图
+        var i = 0;
+        var LIWIDTH = 900;
+        var DURATION = 500;
+        var LICOUNT = 4;
+        var ulImgs = document.getElementById("ul-imgs");
+        var ulIdxs = document.getElementById("ul-idxs");
+        var lis = ulIdxs.children;
+        function moveTo(to) {
+            if (to == undefined) {
+                to = i + 1;
+            }
+            if (i == 0) {
+                if (to > i) {
+                    ulImgs.className = "transition"
+                } else {
+                    ulImgs.className = "";
+                    ulImgs.style.marginLeft = -LIWIDTH * LICOUNT + "px";
+                    setTimeout(() => {
+                        moveTo(LICOUNT - 1);
+                    }, 100);
+                    return;
+                }
+            }
+            i = to;
+            ulImgs.style.marginLeft = -i * LIWIDTH + "px";
+            for (var li of lis) {
+                li.className = "";
+            }
+            // console.log(i);
+            if (i == LICOUNT) {
+                i = 0;
+                setTimeout(() => {
+                    ulImgs.className = "";
+                    ulImgs.style.marginLeft = 0;
+                }, DURATION);
+            }
+            lis[i].className = "active";
+        }
+
+        var btnLeft = document.getElementById("btn-left");
+        var btnRight = document.getElementById("btn-right");
+        var canClick = true;
+        btnRight.onclick = function () {
+            move(1);
+        }
+        function move(n) {
+            if (canClick) {
+                // console.log(i + n);
+                moveTo(i + n);
+                canClick = false;
+                setTimeout(() => {
+                    canClick = true;
+                }, DURATION);
+            }
+        }
+        btnLeft.onclick = function () {
+            move(-1);
+        }
+
+        var interval = 3000;
+        var timer = setInterval(() => {
+            moveTo();
+        }, 3000);
+        var banner = document.getElementById("banner");
+        banner.onmouseover = function () {
+            clearInterval(timer);
+        }
+        banner.onmouseout = function () {
+            timer = setInterval(() => {
+                moveTo()
+            }, 3000);
+        }
+        var ulIdxs = document.getElementById("ul-idxs");
+        canClick = true;
+        ulIdxs.onclick = function (e) {
+            if (canClick) {
+                var li = e.target;
+                if (li.nodeName = "LI") {
+                    if (li.className !== "active") {
+                        for (var i = 0; i < lis.length; i++) {
+                            if (lis[i] == li) {
+                                break;
+                            }
+                        }
+                        moveTo(i);
+                        setTimeout(() => {
+                            canClick = true;
+                        }, DURATION);
+                    }
+                }
+            }
+        }
     </script>
 </body>
 
