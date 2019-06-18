@@ -957,7 +957,8 @@ div.top>span {
 .bodyfooter-list1>.top,
 .bodyfooter-youxiu>.top,
 .bodyfooter-info>.top,
-.bodyfooter-userlogin>.top {
+.bodyfooter-userlogin>.top,
+.bodyfooter-store>.top {
     background-color: #00c1de;
     width: 100%;
     height: 10px;
@@ -1626,6 +1627,8 @@ div.top>span {
 .catalog{
     width: 1200px;
     background: white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 .catalog>ul{
     list-style-type: none;
@@ -1749,13 +1752,36 @@ div.top>span {
 .top_content_item_show{
     display: inline-block;
 }
+.top_content_item_show>ul>li{
+    float: left;
+    margin-right: 20px;
+    margin-top: 20px;
+    /* width: 108px; */
+  
+}
+.top_content_item_show>ul>li>a{
+    width: 108px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    color: #999999;
+    padding: 5px 0;
 
+}
+.top_content_item_show>ul>li:first-child>a{
+    border-radius: 14px;
+    background-color: #eeeeee;
+    color: black;
+    padding-left: 20px;
+    padding-right: 20px
+    /* background:red; */
+}
 .book{
     /* width: 100%; */
     padding: 40px;
     /* padding-left: 200px; */
-    padding-right: 200px;
-    width: 960px;
+    padding-right: 100px;
+    width: 1060px;
     height:460 px;
     margin-top: 20px;
     background: white;
@@ -1766,6 +1792,7 @@ div.top>span {
     display: flex;
     flex-wrap: wrap;
     justify-content:flex-start;
+    /* justify-content: space-between; */
 }
  .book  li{
     margin-right: 15px;
@@ -1775,11 +1802,13 @@ div.top>span {
     width: 150px;
     width: 150px;
 }
+
 .book li>.title{
     font-size: 14px;
     height: 14;
     padding-left: 25px;
 }
+
 .book li>.work{
     font-size: 14px;
     color: #aaaaaa;
@@ -1787,9 +1816,22 @@ div.top>span {
     height: 14px;
     padding-left: 25px;
 }
+
 .book li>.price{
     font-size: 14px;
     color: red;
     font-weight:bold;
     padding-left: 25px;
+}
+.book li>.price>a{
+    font-size: 14px;
+    /* background: red; */
+    /* color: white; */
+    color: red;
+}
+.bodyfooter-store{
+    margin-top: 100px;
+    width: 100%;
+    height: 200px;
+    background-color: #373d41;    
 }
