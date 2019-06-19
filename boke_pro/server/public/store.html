@@ -89,6 +89,7 @@
         }
     </style>
     <script src="/js/myjs.js"></script>
+    <script src="./js/jquery-1.11.3.js"></script>
 </head>
 
 <body>
@@ -105,6 +106,7 @@
             <a href="/aboutme.html">关于我</a>
             <a href="/admin/shoucang">收藏列表</a>
             <a href="/store.html">商城</a>
+            <a href="/store.html">购物车</a>
         </nav>
     </div>
     <!-- 主体部分 -->
@@ -271,7 +273,7 @@
                     <div id="btn-left"></div>
                     <ul id="ul-imgs">
                         <li><a href="javascript:;"><img src="./5.jpg"></a></li>
-                        <li><a href="javascript:;"><img src="./6.jpg"></a></li>
+                        <li><a href="javascript:;"><img src="./6.png"></a></li>
                         <li><a href="javascript:;"><img src="./7.jpg"></a></li>
                         <li><a href="javascript:;"><img src="./8.png"></a></li>
                         <li><a href="javascript:;"><img src="./5.jpg"></a></li>
@@ -324,32 +326,16 @@
             }
 
 
-            var catalog = document.getElementsByClassName("catalog")[0];
-            var catalogRect = catalog.getBoundingClientRect();
-            catalog.onmouseout = function (e) {
-                console.log("onmouseout  e.clientX" + e.clientX);
-
-                if (e.clientX > (catalogRect.x + 301)) {
-                    return;
-                }
-                hideContentItem()
-            }
-
-            catalog.onmousemove = function (e) {
-
-                if (e.clientX > catalogRect.x && e.clientY > catalogRect.top && e.clientY < catalogRect.height && e.clientX < (catalogRect.x + 301)) {
-                    return;
-                }
-                let item = document.querySelector(".top_content_item_show");
-                if (!item) {
-                    return;
-                }
-                var rect = item.getBoundingClientRect();
-                if (e.clientY < rect.top || e.clientX < rect.x || e.clientX > rect.right || e.clientY > rect.bottom) {
-                    hideContentItem()
-                }
-            }
-
+            $(".catalog").mouseleave(function(){
+                // console.log("鼠标离开了");
+                hideContentItem();
+            });
+            
+            $("#banner").mouseenter(function(){
+                // console.log("鼠标进入了");
+                hideContentItem();
+            });
+        
             function hideContentItem() {
                 let showLi = document.querySelector(".top_content_item_show");
                 if (showLi) {
@@ -475,7 +461,16 @@
         }
 
         function addshopCare(pid){
-            console.log(pid);
+            // console.log(pid);
+            ajax_post("http://localhost:8080/shopcar/addProdu",(result)=>{
+               
+                if(result.code==201){
+                    alert("请登录");
+                    location.href="http://localhost:8080/userlogin.html"
+                }else{
+                    alert("添加成功");
+                }
+            },"produId="+pid)
         }
     </script>
 </body>

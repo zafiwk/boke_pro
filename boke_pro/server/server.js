@@ -13,6 +13,7 @@ const test=require("./router/Test");
 const fileUpload =require("./router/FileUpload")
 const blog = require("./router/Blog")
 const product = require("./router/Product")
+const shopcar = require("./router/ShopCar")
 server.listen(8080);
 
 server.use("/",express.static("public"));
@@ -37,3 +38,4 @@ server.use("/test",test);
 server.use("/upload",fileUpload);
 server.use("/blog",blog);
 server.use("/product",product);
+server.use("/shopcar",shopcar)
