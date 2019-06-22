@@ -1787,6 +1787,7 @@ div.top>span {
     margin-top: 20px;
     background: white;
     border-radius: 5px;
+    position: relative;
 }
 .book>ul{
     list-style-type: none;
@@ -1835,4 +1836,243 @@ div.top>span {
     width: 100%;
     height: 200px;
     background-color: #373d41;    
+}
+
+/* 购物车 */
+.productList{
+    width: 880px;
+    background: white;
+    border-radius:5px;
+    float: left;
+}
+.productList ul{
+    width: 880px;
+    list-style-type: none;
+    /* background: #; */
+    color:#000;
+    height: 43px;
+    /* border: 1px  solid red; */
+}
+
+.productList ul>li{
+    float: left;
+    line-height: 43px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.li_inp{
+    width: 60px;
+}
+
+/* .li_inp>input{
+    height: 43px;
+    line-height: 43px;
+} */
+.productList ul>li.li_sp{
+    width: 348px;
+    text-align: left;
+}
+.li_dj{
+    width: 110px;
+}
+.li_sl{
+    width: 152px;
+}
+
+
+
+.li_jg{
+    width:80px;
+}
+.li_zz{
+    width: 130px;
+}
+
+.buy_xuan{
+    width: 60px;
+    height: 43px;
+    line-height: 43px;
+    background:  url(../buy_inphui.jpg) no-repeat 6px center;
+    text-align: left;
+    text-indent: 26px;
+}
+
+.buy_dianhover{
+    background: url(../buy_inphui.jpg) no-repeat 10px center;
+    width: 60px;
+    height: 40px;
+    margin-top:32px;
+    text-indent: 30px;
+    text-align: left;
+}
+
+.j-img{
+    width: 88px;
+    height:88px;
+    float: left;
+    display: block;
+    margin-right: 10px;
+}
+
+.buysp_wen{
+    line-height: 24px;
+    color: #333;
+    font-size: 14px;
+    display: block;
+    height: 24px;
+    overflow: hidden;
+    white-space:normal;
+    text-overflow: ellipsis;
+}
+
+.c999{
+    color: #999999;
+}
+
+.j-price{
+    /* margin-top: 20px; */
+    text-align: center;
+    font-size: 14px;
+}
+
+.buysl{
+    padding-top: 10px;
+    width: 90px;
+    margin: 0 auto;
+}
+#jian_cart{
+    float: left;
+    display: block;
+    width: 20px;
+    height: 28px;
+    background: #e7e7e7;
+    line-height: 28px;
+}
+
+.buy_inp{
+    height: 26px;
+    line-height: 26px;
+    width: 48px;
+    font-size: 14px;
+    text-align: center;
+    border: 0;
+    border-top: 1px solid #cacaca;
+    border-bottom: 1px solid #cacaca;
+    vertical-align: middle;
+    float: left;
+}
+#jia_cart{
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    display: block;
+    width: 20px;
+    height: 28px;
+    line-height: 28px;
+    background: #e7e7e7;
+}
+
+
+ul.buylist{
+    border-bottom: 1px solid #e2e2e2;
+    height: 88px;
+    width: 880px;
+}
+
+.li_inp::before{
+    content: "";
+    display: table;
+}
+
+.clearshopcar{
+    height: 43px;
+}
+
+.buyrightbar{
+  width: 280px;
+  border: 1px  solid #bababa;
+  border-top:3px solid #fa322c;
+  padding-bottom: 4px;
+  background:white;
+  /* position: ;   */
+  /* top:75px; */
+  /* right: 120px; */
+  margin-left: 20px;
+  float: left;
+  border-radius: 5px;
+}
+.buyrightbar>h3{
+    line-height: 42px;
+    height: 42px;
+    background: url(../base.jpg) left -124px no-repeat white;
+    font-weight: normal;
+    text-indent: 34px;
+    font-size: 15px;
+}
+
+.buybai{
+    background: #fff;
+    width: 266px;
+    margin: 0 auto;
+    height: auto;
+}
+
+.buy_youf{
+    width: 240px;
+    padding: 10px 13px;
+    line-height: 26px;
+}
+.cfb6{
+    color:#ed3029;
+}
+.buybottom{
+
+}
+
+.buybottom{
+    width: 240px;
+    padding: 10px 13px;
+    line-height: 26px;
+    color: #666;
+    font-size: 14px;
+}
+
+.buy_you1{
+    background: url(../base.jpg)  left -173px no-repeat;
+    width: 152px;
+    height: 26px;
+    line-height: 26px;
+    padding-top: 4px;
+}
+
+.buy_you2{
+    background: url(../base.jpg)  left -205px no-repeat;
+    width: 152px;
+    height: 26px;
+    line-height: 26px;
+    padding-top: 4px;
+}
+.buy_wen{
+    width: 240px;
+    padding: 10px 13px;
+    line-height: 26px;
+    color:#666;
+    font-size: 14px;
+}
+
+.buy_youf a{
+    font-size: 12px;
+    color:#fff;
+    text-decoration: underline;
+    padding-left: 22px;
+}
+.fb{
+    font-weight: bold;
+}
+.cfff{
+    color: #ffffff;
+}
+.pl10{
+    padding-left: 10px;
 }
