@@ -91,11 +91,10 @@ div.top>span {
 
 #body {
     background-color: #e9eaed;
-    /* float: left; */
-
     position: relative;
     width: 1200px;
     margin: 20px auto;
+    min-height: 100%;
 }
 
 #body::before{
@@ -958,7 +957,8 @@ div.top>span {
 .bodyfooter-youxiu>.top,
 .bodyfooter-info>.top,
 .bodyfooter-userlogin>.top,
-.bodyfooter-store>.top {
+.bodyfooter-store>.top,
+.bodyfooter-shopcar>.top {
     background-color: #00c1de;
     width: 100%;
     height: 10px;
@@ -2075,4 +2075,54 @@ ul.buylist{
 }
 .pl10{
     padding-left: 10px;
+}
+
+a.buy_bot{
+    width: 240px;
+    height: 46px;
+    line-height: 46px;
+    color:#fff;
+    display: block;
+    background: #ed3029;
+    font-size: 18px;
+    text-align: center;
+    padding-left: 0px;
+}
+.mt10{
+    margin-top: 10px;
+}
+
+.f1{
+    float: left;
+    /* display: inline; */
+}
+.buy_baozleft{
+    font-size: 12px;
+    line-height: 60px;
+    width: 60px;
+    text-align: center;
+}
+.buy_baozright{
+    line-height: 20px;
+    border-left: 1px solid #e3e1e1;
+    padding-left: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.bodyfooter-shopcar{
+    margin-top: 100px;
+    width: 100%;
+    height: 200px;
+    float: left;
+    background-color: #373d41;
+    /* position: fixed; */
+    left: 0;
+    bottom: 0;
+}
+
+.warp-shopcar{
+    float: left;
+    width: 1200px;
+    min-height: 100%;
 }
