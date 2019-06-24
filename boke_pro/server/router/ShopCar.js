@@ -1,7 +1,7 @@
 const exporess = require("express");
 const router = exporess.Router();
 const pool = require("../pool/dbpool");
-
+const path = require("path");
 
 
 router.get("/getShopCarData", (req, res) => {
@@ -9,7 +9,33 @@ router.get("/getShopCarData", (req, res) => {
     pool.query("select * from shopcar where uid=?", [uid], (error, result) => {
         if (error)
             throw error;
-        res.send({ code: 200, msg: "购物车查询成功", data: result });
+        if(result.length==0){
+            res.send({code:200,msg:"购物车为空",data:[]});
+            return ;
+        }
+        let  ids=[];
+        for(let  i=0;i < result.length;i++){
+            let model =result[i];
+            ids.push(model["pid"])
+        }
+        pool.query("select  *  from product where pid in (?)",[ids.join(",")],(error,products)=>{
+            if(error){
+                throw error;
+            }
+            // console.log("--------------------------------------")
+            // console.log(result);
+            // console.log(products);
+            for(let i=0;i<result.length;i++){
+                for(let j=0;j<products.length;j++){
+                    if(products[j]["pid"]==result[i]["pid"]){
+                        result[i].product=products[j];
+                    }
+                }
+            }
+            res.send({ code: 200, msg: "购物车查询成功", data: result });
+        })
+     
+
     });
 });
 
@@ -69,6 +95,14 @@ router.post("/addProdu",(req, res)=>{
     });
 })
 
-
+router.get("/gotoshopcar",(req,res)=>{
+    if(req.session.islogin){
+        var rootPath=path.dirname(__dirname);
+        var filePath=rootPath+path.sep+"shopcar.html";
+        res.sendFile(filePath);
+    }else{
+        res.redirect("/userlogin.html");
+    }
+})
 
 module.exports = router;
