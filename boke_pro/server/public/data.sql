@@ -2,13 +2,13 @@ set charset utf8;
 create database if not exists blog charset =utf8;
 use blog;
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 2019-06-24 02:16:38
--- 服务器版本： 10.1.28-MariaDB
--- PHP Version: 5.6.32
+-- 主机： 127.0.0.1
+-- 生成日期： 2019-06-26 02:42:03
+-- 服务器版本： 10.3.16-MariaDB
+-- PHP 版本： 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -22,7 +22,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `blog`
+-- 数据库： `blog`
 --
 
 -- --------------------------------------------------------
@@ -34,7 +34,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `blogs` (
   `bid` int(11) NOT NULL,
   `btitle` varchar(60) DEFAULT NULL,
-  `bcontent` text,
+  `bcontent` text DEFAULT NULL,
   `btiem` datetime DEFAULT NULL,
   `labelId` int(11) DEFAULT NULL,
   `bclick` int(11) DEFAULT NULL
@@ -202,28 +202,28 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`pid`, `pname`, `author`, `price`, `img`) VALUES
-(1, '人性的弱点', '(美)卡耐基 著', '28.50', './book/d_1.jpg'),
-(2, '多莱尔的希腊神话', '英格丽 多莱尔', '78.50', './book/d_2.jpg'),
-(3, '诺奖少年版', '海明威 罗曼.罗', '364.30', './book/d_3.jpg'),
-(4, '百年童话绘本·精装', '(德)格林兄弟', '394.00', './book/d_4.jpg'),
-(5, '乌合之众:大众心理', '(法)古斯塔夫', '18.70', './book/d_5.jpg'),
-(6, '谈判:如何在博弈中', '(英)盖温·肯尼', '36.90', './book/d_6.jpg'),
-(7, '王阳明传:知行合一', '燕山刀客 著', '39.40', './book/d_7.jpg'),
-(8, '边城:沈从文小说精', '沈从文', '30.70', './book/d_8.jpg'),
-(9, '矛盾文学奖得主张炜', '张炜', '60.50', './book/d_9.jpg'),
-(10, '极简英语思维:你的', '杨海英', '33.40', './book/d_10.jpg'),
-(11, '百年童话绘本·精装', '(德)格林兄弟', '394.00', './book/d_4.jpg'),
-(12, '乌合之众:大众心理', '(法)古斯塔夫', '18.70', './book/d_5.jpg'),
-(13, '谈判:如何在博弈中', '(英)盖温·肯尼', '36.90', './book/d_6.jpg'),
-(14, '王阳明传:知行合一', '燕山刀客 著', '39.40', './book/d_7.jpg'),
-(15, '边城:沈从文小说精', '沈从文', '30.70', './book/d_8.jpg'),
-(16, '矛盾文学奖得主张炜', '张炜', '60.50', './book/d_9.jpg'),
-(17, '极简英语思维:你的', '杨海英', '33.40', './book/d_10.jpg'),
-(18, '人性的弱点', '(美)卡耐基 著', '28.50', './book/d_1.jpg'),
-(19, '百年童话绘本·精装', '(德)格林兄弟', '394.00', './book/d_4.jpg'),
-(20, '谈判:如何在博弈中', '(英)盖温·肯尼', '36.90', './book/d_6.jpg'),
-(21, '矛盾文学奖得主张炜', '张炜', '60.50', './book/d_9.jpg'),
-(22, '乌合之众:大众心理', '(法)古斯塔夫', '18.70', './book/d_5.jpg');
+(1, '人性的弱点', '(美)卡耐基 著', '28.50', '/book/d_1.jpg'),
+(2, '多莱尔的希腊神话', '英格丽 多莱尔', '78.50', '/book/d_2.jpg'),
+(3, '诺奖少年版', '海明威 罗曼.罗', '364.30', '/book/d_3.jpg'),
+(4, '百年童话绘本·精装', '(德)格林兄弟', '394.00', '/book/d_4.jpg'),
+(5, '乌合之众:大众心理', '(法)古斯塔夫', '18.70', '/book/d_5.jpg'),
+(6, '谈判:如何在博弈中', '(英)盖温·肯尼', '36.90', '/book/d_6.jpg'),
+(7, '王阳明传:知行合一', '燕山刀客 著', '39.40', '/book/d_7.jpg'),
+(8, '边城:沈从文小说精', '沈从文', '30.70', '/book/d_8.jpg'),
+(9, '矛盾文学奖得主张炜', '张炜', '60.50', '/book/d_9.jpg'),
+(10, '极简英语思维:你的', '杨海英', '33.40', '/book/d_10.jpg'),
+(11, '百年童话绘本·精装', '(德)格林兄弟', '394.00', '/book/d_4.jpg'),
+(12, '乌合之众:大众心理', '(法)古斯塔夫', '18.70', '/book/d_5.jpg'),
+(13, '谈判:如何在博弈中', '(英)盖温·肯尼', '36.90', '/book/d_6.jpg'),
+(14, '王阳明传:知行合一', '燕山刀客 著', '39.40', '/book/d_7.jpg'),
+(15, '边城:沈从文小说精', '沈从文', '30.70', '/book/d_8.jpg'),
+(16, '矛盾文学奖得主张炜', '张炜', '60.50', '/book/d_9.jpg'),
+(17, '极简英语思维:你的', '杨海英', '33.40', '/book/d_10.jpg'),
+(18, '人性的弱点', '(美)卡耐基 著', '28.50', '/book/d_1.jpg'),
+(19, '百年童话绘本·精装', '(德)格林兄弟', '394.00', '/book/d_4.jpg'),
+(20, '谈判:如何在博弈中', '(英)盖温·肯尼', '36.90', '/book/d_6.jpg'),
+(21, '矛盾文学奖得主张炜', '张炜', '60.50', '/book/d_9.jpg'),
+(22, '乌合之众:大众心理', '(法)古斯塔夫', '18.70', '/book/d_5.jpg');
 
 -- --------------------------------------------------------
 
@@ -292,7 +292,7 @@ INSERT INTO `stick` (`sid`, `blogId`) VALUES
 CREATE TABLE `user` (
   `uid` int(11) NOT NULL,
   `state` varchar(64) DEFAULT NULL,
-  `recommend` text,
+  `recommend` text DEFAULT NULL,
   `prodession` varchar(64) DEFAULT NULL,
   `emain` varchar(64) DEFAULT NULL,
   `icon` varchar(64) DEFAULT NULL,
@@ -309,69 +309,69 @@ INSERT INTO `user` (`uid`, `state`, `recommend`, `prodession`, `emain`, `icon`, 
 (4, NULL, NULL, NULL, 'adadds', NULL, '1234556');
 
 --
--- Indexes for dumped tables
+-- 转储表的索引
 --
 
 --
--- Indexes for table `blogs`
+-- 表的索引 `blogs`
 --
 ALTER TABLE `blogs`
   ADD PRIMARY KEY (`bid`);
 
 --
--- Indexes for table `carousel`
+-- 表的索引 `carousel`
 --
 ALTER TABLE `carousel`
   ADD PRIMARY KEY (`cid`),
   ADD KEY `blogId` (`blogId`);
 
 --
--- Indexes for table `ecommend_blogs`
+-- 表的索引 `ecommend_blogs`
 --
 ALTER TABLE `ecommend_blogs`
   ADD PRIMARY KEY (`eid`),
   ADD KEY `blogId` (`blogId`);
 
 --
--- Indexes for table `ecommend_label`
+-- 表的索引 `ecommend_label`
 --
 ALTER TABLE `ecommend_label`
   ADD PRIMARY KEY (`eid`),
   ADD KEY `blogId` (`blogId`);
 
 --
--- Indexes for table `filemap`
+-- 表的索引 `filemap`
 --
 ALTER TABLE `filemap`
   ADD PRIMARY KEY (`sid`),
   ADD KEY `blogId` (`blogId`);
 
 --
--- Indexes for table `product`
+-- 表的索引 `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`pid`);
 
 --
--- Indexes for table `shopcar`
+-- 表的索引 `shopcar`
 --
 ALTER TABLE `shopcar`
   ADD PRIMARY KEY (`sid`);
 
 --
--- Indexes for table `shoucang`
+-- 表的索引 `shoucang`
 --
 ALTER TABLE `shoucang`
   ADD PRIMARY KEY (`sid`);
 
 --
--- Indexes for table `stick`
+-- 表的索引 `stick`
 --
 ALTER TABLE `stick`
   ADD PRIMARY KEY (`sid`);
 
 --
--- Indexes for table `user`
+-- 表的索引 `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`uid`);

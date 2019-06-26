@@ -1897,7 +1897,9 @@ div.top>span {
     text-align: left;
     text-indent: 26px;
 }
-
+.buy_xuan_gouxuan{
+    background:  url(../buy_inphoer.jpg) no-repeat 6px center;
+}
 .buy_dianhover{
     background: url(../buy_inphui.jpg) no-repeat 10px center;
     width: 60px;
@@ -1906,7 +1908,9 @@ div.top>span {
     text-indent: 30px;
     text-align: left;
 }
-
+.buy_dianhover_gouxuan{
+    background: url(../buy_inphoer.jpg) no-repeat 10px center;
+}
 .j-img{
     width: 88px;
     height:88px;
@@ -1941,7 +1945,7 @@ div.top>span {
     width: 90px;
     margin: 0 auto;
 }
-#jian_cart{
+.jian_cart{
     float: left;
     display: block;
     width: 20px;
@@ -1962,7 +1966,7 @@ div.top>span {
     vertical-align: middle;
     float: left;
 }
-#jia_cart{
+.jia_cart{
     padding: 0px;
     margin: 0px;
     float: left;
