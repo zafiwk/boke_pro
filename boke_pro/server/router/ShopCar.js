@@ -22,15 +22,15 @@ function queryData(req, res){
             let model =result[i];
             ids.push(model["pid"])
         }
-        console.log("查询出来的id列表");
+        // console.log("查询出来的id列表");
         // console.log(ids);
-        let idstr= ids.join(",");
-        console.log(idstr);
-        pool.query("select  *  from product where pid in (?)",[idstr],(error,products)=>{
+        // let idstr= ids.join(",");
+        // console.log(idstr);
+        pool.query("select  *  from product where pid in (select pid from shopcar where uid=?)",[uid],(error,products)=>{
             if(error){
                 throw error;
             }
-            console.log(products);
+            // console.log(products);
             for(let i=0;i<result.length;i++){
                 for(let j=0;j<products.length;j++){
                     if(products[j]["pid"]==result[i]["pid"]){
@@ -56,7 +56,7 @@ router.post("/updateShopCar", (req, res) => {
             if(error)
                 throw error;
             res.send({code:200,msg:"修改成功"});
-
+            // queryData(req,res);
         })
     }else{
         pool.query("delete from shopcar where sid=?",[shopcarId],(error,resulte)=>{
@@ -113,14 +113,19 @@ router.get("/gotoshopcar",(req,res)=>{
 router.post("/deleteShopCar",(req,res)=>{
     let  sid =req.body.sid;
     if(sid){
+        console.log("sid"+sid);
         pool.query("delete from shopcar where sid=?",[sid],(error,result)=>{
             if(error)
                 throw error;
-            res.send({code:200,msg:"删除成功"})
+            // res.send({code:200,msg:"删除成功"})
+            queryData(req,res);
         })
     }else{
         let uid=req.session.uid;
-        pool.query("delete from shop where uid=?",[uid],(error,result)=>{
+        console.log("uid"+uid);
+        pool.query("delete from shopcar where uid=?",[uid],(error,result)=>{
+            if(error)
+              throw error;
             res.send({code:200,msg:"购物清空完成"});
         })
     }

@@ -24,6 +24,7 @@
             <a href="/aboutme.html">关于我</a>
             <a href="/admin/shoucang">收藏列表</a>
             <a href="/store.html">商城</a>
+            <a href="/shopcar/gotoshopcar">购物车</a>
         </nav>
     </div>
     <!-- 主体部分 -->
@@ -39,19 +40,19 @@
                         <span class="cfb6">满199包邮</span>
                         <span id="isFreeSpan" style="display:none">-你还没满足包邮条件</span>
                         <div class="buy_you1">
-                            <span class="fb cfff pl10">为满足</span>
-                            <a href="javascript:;">更多人商品</a>
+                            <span class="fb cfff pl10" id="buy_not">未满足</span>
+                            <a href="javascript:;">更多人气商品</a>
                         </div>
                         <!-- 已满足包邮情况 -->
                         <div class="buy_you2" style="display: none">
-                            <span class="fb cfff pl10">已满足</span>
+                            <span class="fb cfff pl10" id="buy_ok">已满足</span>
                             <a href="javascript:;">更多人气商品</a>
                         </div>
                     </div>
                     <div class="buy_wen buybottom">
-                        商品数量:<span class="numcount">3</span><br>
+                        商品数量:<span class="numcount">0</span><br>
                         商品金额:<span class="cfb6">
-                            ￥<font class="cfb6 f16">1170.00</font>
+                            ￥<font class="cfb6 f16">0.00</font>
                         </span>
                         <a class="mt10 buy_bot" id="carePay" href="javascript:;">去结算</a>
                     </div>
@@ -95,151 +96,59 @@
             warpShopcar.style.minHeight = window.innerHeight - 300 - 5 - 56 - 20 - 2 + "px"
 
             ajax_get("/shopcar/getShopCarData", (result) => {
-                // console.log(result);
-                let html = `             <ul>
-                    <li class="li_inp">
-                        <div class="buy_xuan">全选</div>
-                    </li>
-                    <li class="li_sp">商品数量</li>
-                    <li class="li_dj">单价(元)</li>
-                    <li class="li_sl">数量</li>
-                    <li class="li_jg">小计</li>
-                    <li class="li_zz">操作</li>
-                </ul>`;
-                for (let i = 0; i < result["data"].length; i++) {
-                    let model = result["data"][i];
-                    console.log(model);
-
-                    html += ` <ul class="buylist">
-                        <li class="li_inp">
-                            <div class="buy_dianhover">选择</div>
-                        </li>
-                        <li class="li_sp">
-                            <div>
-                                <img class="j-img" src="${model.product.img}">
-                            </div>
-                            <div>
-                                <span class="buysp_wen">${model.product.pname}</span>
-                                <span class="c999">${model.product.author}</span>
-                            </div>
-                        </li>
-                        <li class="li_dj"><span class="j-price">￥${model.product.price}</span></li>
-                        <li class="li_sl">
-                            <div class="buysl">
-                                <a class="jian_cart" href="javascript:;">-</a>
-                                <input type="text" class="buy_inp" value="${model.size}" maxlength="2">
-                                <a class="jia_cart" href="javascript:;">+</a>
-                            </div>
-                        </li>
-                        <li class="li_jg">￥${model.product.price * model.size}</li>
-                        <li class="li_zz"><a href="javascript:;" class="deletePro">删除</a></li>
-                    </ul>`
-                }
-
-                html += ` <ul class="clearshopcar">
-                    <li class="li_inp">
-                        <div class="buy_xuan">全选</div>
-                    </li>
-                    <li class="li_sp">&nbsp;</li>
-                    <li class="li_dj">&nbsp;</li>
-                    <li class="li_sl">&nbsp;</li>
-                    <li class="li_jg">&nbsp;</li>
-                    <li class="li_zz"><a href="javascript:deleteShopCar();">清空购物车</a></li>
-                </ul>`
-                let productList = document.getElementsByClassName("productList")[0];
-                productList.innerHTML = html;
-
-                let deletePros = document.getElementsByClassName("deletePro");
-                console.log(deletePros.length);
-                for (let a of deletePros) {
-                    a.onclick = function (e) {
-                        console.log(e.target);
-                    }
-                }
-                var jian_carts = document.getElementsByClassName("jian_cart");
-                for (let jian_cart of jian_carts) {
-                    jian_cart.onclick = function (e) {
-                        let inputElem = e.target.nextElementSibling;
-                        if (inputElem.value == 1) {
-                            alert("商品最少一个")
-                            return;
-                        }
-                        inputElem.value = parseInt(inputElem.value) - 1;
-                        let size = parseFloat(inputElem.value);
-                        let price = e.target.parentElement.parentElement.previousElementSibling.children[0].innerHTML.slice(1);
-                        // console.log();
-                        e.target.parentElement.parentElement.nextElementSibling.innerHTML = "￥" + price * size;
-                        // console.log(price,size);
-                        // inputElem.parentElement.parentElement
-                    }
-                }
-                var jia_carts = document.getElementsByClassName("jia_cart");
-                for (let jia_cart of jia_carts) {
-                    jia_cart.onclick = function (e) {
-                        let inputElem = e.target.previousElementSibling;
-                        console.log(e.target);
-                        inputElem.value = parseInt(inputElem.value) + 1;
-
-                        let size = parseFloat(inputElem.value);
-                        let price = e.target.parentElement.parentElement.previousElementSibling.children[0].innerHTML.slice(1);
-                        // console.log();
-                        e.target.parentElement.parentElement.nextElementSibling.innerHTML = "￥" + price * size;
-                    }
-                }
-
-                let buy_xuans = document.getElementsByClassName("buy_xuan")
-                let buy_dianhovers= document.getElementsByClassName("buy_dianhover");
-                for (let buy_xuan of buy_xuans) {
-                    buy_xuan.onclick = function (e) {
-                        console.log("全选被点击");
-                        let className = e.target.className;
-                        if (className.indexOf("buy_xuan_gouxuan") == -1) {
-                            for (let buy_xuan of buy_xuans) {
-                                buy_xuan.className = className + " buy_xuan_gouxuan";
-                            }
-                            for(let buy_dianhover of buy_dianhovers){
-                                buy_dianhover.className = buy_dianhover.className+" buy_dianhover_gouxuan";
-                            }
-                        } else {
-                            for (let buy_xuan of buy_xuans) {
-                                buy_xuan.className = className.replace("buy_xuan_gouxuan", "");
-                            }
-                            for(let buy_dianhover of buy_dianhovers){
-                                buy_dianhover.className = buy_dianhover.className.replace("buy_dianhover_gouxuan", "");
-                            }
-                        }
-                    };
-                }
-
-                for(let buy_dianhover  of  buy_dianhovers ){
-                    buy_dianhover.onclick = function(e){
-                        if(buy_dianhover.indexOf("buy_xuan_gouxuan")!=-1){
-                            buy_dianhover.className = buy_dianhover.className + " buy_xuan_gouxuan";
-                            if(document.getElementsByClassName("buy_xuan").length==0){
-                                for(let buy_dianhover of buy_dianhovers){
-                                buy_dianhover.className = buy_dianhover.className+" buy_dianhover_gouxuan";
-                            }                                
-                            }
-                        }else{
-                            buy_dianhover.className = buy_dianhover.className.replace("buy_xuan_gouxuan","");
-                            for (let buy_xuan of buy_xuans) {
-                                buy_xuan.className = className.replace("buy_xuan_gouxuan", "");
-                            }
-
-                        }
-                    }
-                }
-
+                loadData(result);
             });
 
 
         })();
 
+        function totalPriceAndCount() {
+            let buy_dianhovers = document.getElementsByClassName("buy_dianhover");
+            let total = 0;
+            let count = 0
+            for (let buy_dianhover of buy_dianhovers) {
+                if (buy_dianhover.className.indexOf("buy_dianhover_gouxuan") != -1) {
+                    // console.log(buy_dianhover.parentElement.parentElement.getElementsByClassName("li_jg")[0].innerHTML);
+                    let price = buy_dianhover.parentElement.parentElement.getElementsByClassName("li_jg")[0].innerHTML.slice(1);
+                    // console.log(price);
+                    total += parseFloat(price);
+                    // console.log(buy_dianhover.parentElement.parentElement.getElementsByClassName("buy_inp")[0].value);
+                    count += parseInt(buy_dianhover.parentElement.parentElement.getElementsByClassName("buy_inp")[0].value)
+                }
+            }
+            // console.log("总价  购物车数量");
+            // console.log(total, "-------------------", count);
+            document.getElementsByClassName("cfb6 f16")[0].innerHTML = total;
+            document.getElementsByClassName("numcount")[0].innerHTML = count.toFixed(2);
+
+            if (total >= 199) {
+                document.getElementById("isFreeSpan").style.display = "none"
+                document.getElementsByClassName("buy_you2")[0].style.display = "block"
+                document.getElementsByClassName("buy_you1")[0].style.display = "none"
+
+            } else {
+                document.getElementById("isFreeSpan").style.display = "inline-block"
+                document.getElementsByClassName("buy_you2")[0].style.display = "none"
+                document.getElementsByClassName("buy_you1")[0].style.display = "block"
+            }
+        }
+        function deletePro(sid) {
+            console.log(this);
+            if (confirm("是否删除商品")) {
+                ajax_post("/shopcar/deleteShopCar", (result) => {
+                    console.log(result);
+                    // console.log("ajax请求返回成功");
+                    // console.log(this);
+                    loadData(result);
+                    totalPriceAndCount();
+                }, "sid=" + sid)
+            }
+        }
 
         function deleteShopCar() {
-            if (confirm()) {
+            if (confirm("是否清空购物车")) {
                 // console.log("删除购物车")
-                ajax_get("/shopcar/deleteShopCar", (req, res) => {
+                ajax_post("/shopcar/deleteShopCar", (req, res) => {
                     // alert("清空完成");
                     let html = `             <ul>
                     <li class="li_inp">
@@ -264,13 +173,171 @@
                     let productList = document.getElementsByClassName("productList")[0];
                     productList.innerHTML = html;
 
-
-                })
+                    totalPriceAndCount();
+                }, null);
             }
         }
 
+        function loadData(result) {
+            let html = `
+            <ul>
+                    <li class="li_inp">
+                        <div class="buy_xuan">全选</div>
+                    </li>
+                    <li class="li_sp">商品数量</li>
+                    <li class="li_dj">单价(元)</li>
+                    <li class="li_sl">数量</li>
+                    <li class="li_jg">小计</li>
+                    <li class="li_zz">操作</li>
+                </ul>`;
+            for (let i = 0; i < result["data"].length; i++) {
+                let model = result["data"][i];
+                html += ` <ul class="buylist">
+                        <li class="li_inp">
+                            <div class="buy_dianhover">选择</div>
+                        </li>
+                        <li class="li_sp">
+                            <div>
+                                <img class="j-img" src="${model.product.img}">
+                            </div>
+                            <div>
+                                <span class="buysp_wen">${model.product.pname}</span>
+                                <span class="c999">${model.product.author}</span>
+                            </div>
+                        </li>
+                        <li class="li_dj"><span class="j-price">￥${model.product.price}</span></li>
+                        <li class="li_sl">
+                            <div class="buysl">
+                                <a class="jian_cart" href="javascript:;" onclick="jiancart(${model.sid},${i})">-</a>
+                                <input type="text" class="buy_inp" readonly value="${model.size}" maxlength="2">
+                                <a class="jia_cart" href="javascript:;" onclick="jiacart(${model.sid},${i})">+</a>
+                            </div>
+                        </li>
+                        <li class="li_jg">￥${model.product.price * model.size}</li>
+                        <li class="li_zz"><a href="javascript:;" class="deletePro" onclick='deletePro(${model.sid})'>删除</a></li>
+                    </ul>`
+            }
+
+            html += ` <ul class="clearshopcar">
+                    <li class="li_inp">
+                        <div class="buy_xuan">全选</div>
+                    </li>
+                    <li class="li_sp">&nbsp;</li>
+                    <li class="li_dj">&nbsp;</li>
+                    <li class="li_sl">&nbsp;</li>
+                    <li class="li_jg">&nbsp;</li>
+                    <li class="li_zz"><a href="javascript:deleteShopCar();">清空购物车</a></li>
+                </ul>`
+            let productList = document.getElementsByClassName("productList")[0];
+            productList.innerHTML = html;
 
 
+
+
+            let buy_xuans = document.getElementsByClassName("buy_xuan")
+            let buy_dianhovers = document.getElementsByClassName("buy_dianhover");
+            for (let buy_xuan of buy_xuans) {
+                buy_xuan.onclick = function (e) {
+                    // console.log("全选被点击");
+
+                    let className = e.target.className;
+                    if (className.indexOf("buy_xuan_gouxuan") == -1) {
+                        for (let buy_xuan of buy_xuans) {
+                            buy_xuan.className = className + " buy_xuan_gouxuan";
+                        }
+                        for (let buy_dianhover of buy_dianhovers) {
+                            if (buy_dianhover.className.indexOf("buy_dianhover_gouxuan") == -1) {
+                                buy_dianhover.className = buy_dianhover.className + " buy_dianhover_gouxuan";
+                            }
+                        }
+                    } else {
+                        for (let buy_xuan of buy_xuans) {
+                            buy_xuan.className = className.replace("buy_xuan_gouxuan", "");
+                        }
+                        for (let buy_dianhover of buy_dianhovers) {
+                            buy_dianhover.className = buy_dianhover.className.replace("buy_dianhover_gouxuan", "");
+                        }
+                    }
+                    totalPriceAndCount();
+                };
+            }
+
+            for (let buy_dianhover of buy_dianhovers) {
+                buy_dianhover.onclick = function (e) {
+                    if (buy_dianhover.className.indexOf("buy_dianhover_gouxuan") != -1) {
+                        buy_dianhover.className = buy_dianhover.className.replace("buy_dianhover_gouxuan", "");
+                        for (let buy_xuan of buy_xuans) {
+                            buy_xuan.className = buy_xuan.className.replace("buy_xuan_gouxuan", "");
+                        }
+                    } else {
+                        buy_dianhover.className = buy_dianhover.className + " buy_dianhover_gouxuan";
+                        let fags = true;
+                        for (let buy_dianhover of buy_dianhovers) {
+                            if (buy_dianhover.className.indexOf("buy_dianhover_gouxuan") == -1) {
+                                fags = false;
+                            }
+                        }
+                        if (fags) {
+                            for (let buy_xuan of buy_xuans) {
+                                buy_xuan.className = buy_xuan.className + " buy_xuan_gouxuan";
+                            }
+                        } else {
+                            for (let buy_xuan of buy_xuans) {
+                                buy_xuan.className = buy_xuan.className.replace("buy_xuan_gouxuan", "");
+                            }
+                        }
+
+                    }
+                    totalPriceAndCount();
+                }
+            }
+
+
+
+            totalPriceAndCount();
+        }
+
+        function jiancart(sid, index) {
+            // console.log(this,index);
+            var jian_carts = document.getElementsByClassName("jian_cart");
+            console.log(jian_carts);
+         // let inputElem = jian_carts[index].nextElementSibling;
+            let inputElem = jian_carts[index].nextElementSibling
+            if (inputElem.value == 1) {
+                alert("商品最少一个")
+                return;
+            }
+            let size = parseFloat(inputElem.value) - 1;
+            ajax_post("/shopcar/updateShopCar", (result) => {
+                inputElem.value = size;
+                let price = inputElem.parentElement.parentElement.previousElementSibling.children[0].innerHTML.slice(1);
+                // console.log();
+                inputElem.parentElement.parentElement.nextElementSibling.innerHTML = "￥" + price * size;
+                totalPriceAndCount();
+            }, "shopcarId=" + sid + "&" + "size=" + size)
+
+            // console.log(price,size);
+            // inputElem.parentElement.parentElement
+
+
+        }
+
+
+        function jiacart(sid, index) {
+            // console.log(this, index);
+            var jia_carts = document.getElementsByClassName("jia_cart");
+
+            let inputElem = jia_carts[index].previousElementSibling;
+            let size = parseFloat(inputElem.value)+1;
+            ajax_post("/shopcar/updateShopCar", result => {
+                inputElem.value = size
+                let price = inputElem.parentElement.parentElement.previousElementSibling.children[0].innerHTML.slice(1);
+                inputElem.parentElement.parentElement.nextElementSibling.innerHTML = "￥" + price * size;
+                totalPriceAndCount();
+            }, "shopcarId=" + sid + "&" + "size=" + size)
+
+
+        }
     </script>
 </body>
 
