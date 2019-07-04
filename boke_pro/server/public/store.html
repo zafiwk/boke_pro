@@ -351,7 +351,7 @@
                 }
             }
 
-            ajax_get("http://localhost:8080/product/getProduct", (result) => {
+            ajax_get("/product/getProduct", (result) => {
                 let dataArray = result["data"];
                 let html = "";
                 for (let i = 0; i < dataArray.length; i++) {
@@ -463,11 +463,11 @@
 
         function addshopCare(pid){
             // console.log(pid);
-            ajax_post("http://localhost:8080/shopcar/addProdu",(result)=>{
+            ajax_post("/shopcar/addProdu",(result)=>{
                
                 if(result.code==201){
                     alert("请登录");
-                    location.href="http://localhost:8080/userlogin.html"
+                    location.href="/userlogin.html"
                 }else{
                     alert("添加成功");
                 }

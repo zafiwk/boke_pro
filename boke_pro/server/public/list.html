@@ -374,7 +374,7 @@
     </footer>
     <script>
         function sortByTimeContent_loaddata(typeId,elememtId) {
-            var url="http://localhost:8080/blog/queryByTypeId?typeId=" + typeId;
+            var url="/blog/queryByTypeId?typeId=" + typeId;
             ajax_get(url, (result) => { 
                 var dataArray = result["data"];
                 var modelArray=[]

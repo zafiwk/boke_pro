@@ -14,5 +14,5 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.extraPlugins = 'image2';
 
-    config.filebrowserImageUploadUrl='http://localhost:8080/upload/upfile';
+    config.filebrowserImageUploadUrl='/upload/upfile';
 };

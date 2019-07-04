@@ -251,7 +251,7 @@
         getTopBoke(newBlog_top)
         getblogData(9)
         var pageTotal = 0;
-        ajax_get("http://localhost:8080/blog/getCount", (result) => {
+        ajax_get("/blog/getCount", (result) => {
             var count = parseInt(result["data"][0]["count(bid)"]);
             if (isNaN(count)) {
                 return;
@@ -309,7 +309,7 @@
             page.innerHTML = html;
 
 
-            var url = "http://localhost:8080/blog/getblog?count=9&start=" + currentPage * 9;
+            var url = "/blog/getblog?count=9&start=" + currentPage * 9;
             console.log(`============================当前起始下标数据${currentPage * 9}`);
             ajax_get(url, (obj) => {
                 var dataArray = obj["data"];

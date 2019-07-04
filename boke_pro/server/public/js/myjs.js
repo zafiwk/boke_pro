@@ -84,7 +84,7 @@ function getLableByNunber(lableId) {
 
 
 function  getTopBoke(element){
-    ajax_get("http://localhost:8080/blog/getTopBoke",(obj)=>{
+    ajax_get("/blog/getTopBoke",(obj)=>{
         var model =obj["data"][0];
         var imgs = parseImgUrlByContent(model.bcontent);
         console.log("解析出来了图片张数"+imgs.length)
@@ -181,7 +181,7 @@ function loadEcommendBlogsData(){
 }
 
 function getblogData(n) {
-    var url = "http://localhost:8080/blog/getblog?count="+n;
+    var url = "/blog/getblog?count="+n;
     ajax_get(url, (obj) => {
         var dataArray = obj["data"];
         var liArray = document.getElementsByClassName("common");

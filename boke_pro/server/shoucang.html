@@ -77,6 +77,7 @@
        loadData();
 
        function deleteBid(bid){
+           if(confirm("是否删除该收藏")){
             var body = "bid="+bid;
             ajax_post("/blog/deleteCollect",(obj)=>{
                 if(obj["code"]==200){
@@ -86,6 +87,7 @@
                     alert("服务器异常");
                 }
             },body);
+           }
        }
     </script>
 </body>
