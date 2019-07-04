@@ -213,7 +213,7 @@
                                 <a class="jia_cart" href="javascript:;" onclick="jiacart(${model.sid},${i})">+</a>
                             </div>
                         </li>
-                        <li class="li_jg">￥${model.product.price * model.size}</li>
+                        <li class="li_jg">￥${accMul(model.product.price, model.size)}</li>
                         <li class="li_zz"><a href="javascript:;" class="deletePro" onclick='deletePro(${model.sid})'>删除</a></li>
                     </ul>`
             }
@@ -301,7 +301,7 @@
             // console.log(this,index);
             var jian_carts = document.getElementsByClassName("jian_cart");
             console.log(jian_carts);
-         // let inputElem = jian_carts[index].nextElementSibling;
+            // let inputElem = jian_carts[index].nextElementSibling;
             let inputElem = jian_carts[index].nextElementSibling
             if (inputElem.value == 1) {
                 alert("商品最少一个")
@@ -312,7 +312,7 @@
                 inputElem.value = size;
                 let price = inputElem.parentElement.parentElement.previousElementSibling.children[0].innerHTML.slice(1);
                 // console.log();
-                inputElem.parentElement.parentElement.nextElementSibling.innerHTML = "￥" + price * size;
+                inputElem.parentElement.parentElement.nextElementSibling.innerHTML = "￥" + accMul(price, size)
                 totalPriceAndCount();
             }, "shopcarId=" + sid + "&" + "size=" + size)
 
@@ -328,16 +328,25 @@
             var jia_carts = document.getElementsByClassName("jia_cart");
 
             let inputElem = jia_carts[index].previousElementSibling;
-            let size = parseFloat(inputElem.value)+1;
+            let size = parseFloat(inputElem.value) + 1;
             ajax_post("/shopcar/updateShopCar", result => {
                 inputElem.value = size
                 let price = inputElem.parentElement.parentElement.previousElementSibling.children[0].innerHTML.slice(1);
-                inputElem.parentElement.parentElement.nextElementSibling.innerHTML = "￥" + price * size;
+                // inputElem.parentElement.parentElement.nextElementSibling.innerHTML = "￥" + price * size*100/100;
+                inputElem.parentElement.parentElement.nextElementSibling.innerHTML = "￥" + accMul(price, size)
                 totalPriceAndCount();
             }, "shopcarId=" + sid + "&" + "size=" + size)
 
 
         }
+
+        // 乘法
+        function accMul(arg1, arg2) {
+            var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
+            try { m += s1.split(".")[1].length } catch (e) { }
+            try { m += s2.split(".")[1].length } catch (e) { }
+            return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
+        }  
     </script>
 </body>
 
