@@ -101,6 +101,7 @@ router.post("/userLogin",(req,res)=>{
         if(result.length>0){
             req.session.islogin=true;
             req.session.uid=result[0]["uid"];
+            res.cookie("uname",result[0]["emain"]);
             res.send({code:200,msg:"登录成功"})
         }else{
             res.send({code:300,msg:"账号或者密码错误"});
@@ -121,6 +122,7 @@ router.post("/register",(req,res)=>{
                 if(result.length>0){
                     req.session.islogin=true;
                     req.session.uid=result[0]["uid"];
+                    res.cookie("uname",result[0]["emain"]);
                     res.send({code:200,msg:"注册成功"})
                 }else{
                     res.send({code:300,msg:"注册失败"});

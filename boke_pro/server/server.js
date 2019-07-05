@@ -2,6 +2,7 @@ const express=   require("express");
 const server = express();
 const bodyParser = require("body-parser") ;
 const session = require("express-session")
+var cookieParser = require('cookie-parser')
 
 const userRouter = require("./router/UserRouter");
 const labelRouter = require("./router/LabelRouter");
@@ -14,6 +15,9 @@ const fileUpload =require("./router/FileUpload")
 const blog = require("./router/Blog")
 const product = require("./router/Product")
 const shopcar = require("./router/ShopCar")
+
+
+server.use(cookieParser());
 server.listen(8080);
 
 server.use("/",express.static("public"));
@@ -24,8 +28,9 @@ server.use(bodyParser.urlencoded({
 
 server.use(session({
     secret:'sdsaewrw ewreecret',//对sessionId 相关cookie进行签名
+    cookie:{maxAge:60*1000*30},//过期时间ms
     resave:false,
-    saveUninitialized:false
+    saveUninitialized:true
 }));
 
 server.use("/admin",userRouter);

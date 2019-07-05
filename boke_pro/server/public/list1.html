@@ -35,7 +35,7 @@
                 <h4>最新博文</h4>
                 <hr>
             </div>
-            <ul>
+            <ul id="newBolo_list1">
                 <!-- 置顶 -->
                 <li class="top" id="newBlog_top">
                     <p><span>【顶】</span>别让这些闹心的套路,毁了你的网页设计</p>
@@ -164,7 +164,6 @@
                 <a href="#">5</a>
                 <a href="#" class="next">下一页</a>
             </div>
-
         </div>
         <div class="warp_list">
             <!-- 个人介绍 -->
@@ -221,6 +220,7 @@
                         <p>十条设计原则教你学会如何设计网页布</p>
                     </li>
                 </ul>
+                
             </div>
 
             <!-- 美术图片 -->
@@ -286,7 +286,7 @@
             if (currentPage > 0) {
                 html += `<a href="javascript:pageClick('${currentPage}')" class="prev"> 上一页</a>`
             } else {
-                html += `<a href="#" class="prev"> 上一页</a>`;
+                html += `<a href="javascript:;" class="prev"> 上一页</a>`;
             }
 
             for (let i = 0; i < pageTotal; i++) {
@@ -296,13 +296,13 @@
                     html += `<a href="javascript:pageClick('${i + 1}')">${i + 1}</a>`
                 }
                 if (i > 5) {
-                    html += `<a href="#">...</a>`
+                    html += `<a href="javascript:;">...</a>`
                     break;
                 }
             }
 
             if (currentPage + 2 > pageTotal) {
-                html += ` <a href="#" class="next">下一页</a>`;
+                html += ` <a href="javascript:;" class="next">下一页</a>`;
             } else {
                 html += ` <a href="javascript:pageClick('${currentPage + 2}')" class="next">下一页</a>`;
             }
@@ -311,13 +311,23 @@
 
             var url = "/blog/getblog?count=9&start=" + currentPage * 9;
             console.log(`============================当前起始下标数据${currentPage * 9}`);
+
+
             ajax_get(url, (obj) => {
                 var dataArray = obj["data"];
-                var liArray = document.getElementsByClassName("common");
-                console.log(liArray);
+                // var liArray = document.getElementsByClassName("common");
+                // console.log(liArray);
+                // let  documentFragment=document.createDocumentFragment;
+               let lis  =  document.querySelectorAll("#newBolo_list1 > li")
+               for(let i=1 ;i<lis.length;i++){
+                   let  node =lis[i];
+                   node.parentNode.removeChild(node);
+               }
+               let  newBolo_list= document.getElementById("newBolo_list1");
+               html = newBolo_list.innerHTML;
                 for (let i = 0; i < dataArray.length; i++) {
                     var model = dataArray[i];
-                    var li = liArray[i];
+                    // var li = liArray[i];
 
                     var imgs = parseImgUrlByContent(model.bcontent);
 
@@ -333,7 +343,8 @@
 
                     var label = getLableByNunber(model.labelId)
 
-                    li.innerHTML = `
+                    html +=    `
+                    <li class="common">
                  <h3>${model.btitle}</h3>
                     <img src="${imgs[0]}">
                     <p>${subContent}
@@ -342,9 +353,11 @@
                         <img src="1.jpg" /><span>王康 ${date.toLocaleDateString()}</span><span>【<a href="#">${label}</a>】</span>
                     </div>
                     <a href="/info.html?bid=${model.bid}">阅读更多</a>
-            
+                    </li>
             `
                 }
+
+                newBolo_list.innerHTML = html;
             });
         }
     </script>

@@ -35,6 +35,8 @@ function ajax_post(url, backCall, bodydata) {
     xhr.send(bodydata);
 }
 
+
+
 function parseImgUrlByContent(content) {
     var reg = /src=\"+[0-9a-z./]*\"+/gi;
     var imgeArray = [];

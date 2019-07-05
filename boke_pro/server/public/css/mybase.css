@@ -673,10 +673,19 @@ div.top>span {
     margin-top: 20px;
     position: relative;
 }
+/* .newblog-list>ul{
+    background: red;
+} */
+
+.newblog-list>.topBtn{
+    float: left;
+    width: 900px;
+    height: 70px;
+    /* background: #096; */
+}
 
 .newblog>.topBtn>h4,
 .newblog-list>.topBtn>h4 {
-
     font-weight: normal;
     line-height: 40px;
     margin-bottom: 10px;
@@ -728,7 +737,11 @@ div.top>span {
     box-sizing: border-box;
 
 }
-
+.newblog-list>ul{
+    position: relative;
+    top: 0px;
+    float: left;
+}
 .newblog>ul>li,
 .newblog-list>ul>li {
     float: left;
@@ -1064,8 +1077,11 @@ div.top>span {
 /* 普通行高220 */
 .newblog-list{
     margin-top: 0px;
-    height: 2576px;
+    /* height: 2576px; */
+    height: 100%;
+    /* float: left; */
 }
+
 
 /* .newblog-list>ul{ */
     /* clear:both; */
@@ -1073,9 +1089,10 @@ div.top>span {
 /* } */
 
 .newblog-list>div.page{
-    position:absolute;
+    float: left;
+    /* position:absolute;
     left: 0;
-    bottom:0;
+    bottom:0; */
     width: 900px;
     height: 96px;
     border-bottom-left-radius: 5px;
@@ -1109,7 +1126,9 @@ div.top>span {
 }
 
 .bodyfooter-list1{
-    margin-top: 2640px;
+    /* margin-top: 2640px; */
+    margin-top: 100px;
+    float: left;
     width: 100%;
     height: 200px;
     background-color: #373d41;
@@ -2130,3 +2149,4 @@ a.buy_bot{
     width: 1200px;
     min-height: 100%;
 }
+

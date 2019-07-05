@@ -89,7 +89,7 @@
         }
     </style>
     <script src="/js/myjs.js"></script>
-    <script src="./js/jquery-1.11.3.js"></script>
+    <!-- <script src="./js/jquery-1.11.3.js"></script> -->
 </head>
 
 <body>
@@ -327,15 +327,26 @@
             }
 
 
-            $(".catalog").mouseleave(function(){
-                // console.log("鼠标离开了");
-                hideContentItem();
-            });
+            // $(".catalog").mouseleave(function(){
+            //     // console.log("鼠标离开了");
+            //     hideContentItem();
+            // });
             
-            $("#banner").mouseenter(function(){
-                // console.log("鼠标进入了");
+            // $("#banner").mouseenter(function(){
+            //     // console.log("鼠标进入了");
+            //     hideContentItem();
+            // });
+            let catalog=document.getElementsByClassName("catalog")[0];
+            console.log(catalog);
+            catalog.onmouseleave=function(e){
+                console.log("鼠标离开了");
                 hideContentItem();
-            });
+            }
+            let banner = document.getElementById("banner");
+            banner.onmouseenter=function(e){
+                console.log("鼠标进入了");
+                hideContentItem();
+            }
         
             function hideContentItem() {
                 let showLi = document.querySelector(".top_content_item_show");
