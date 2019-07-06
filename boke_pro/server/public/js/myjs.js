@@ -220,3 +220,32 @@ function getblogData(n) {
         }
     });
 }
+
+function topRightInit(){
+    let uName=document.cookie.split("=")[1];
+    let span = document.querySelector(".top_right > span");
+    // console.log(span);
+    let  loginIn =document.getElementsByClassName("loginIn")[0];
+    let  loginOut =document.getElementsByClassName("loginOut")[0];
+    console.log(loginIn)
+    console.log(loginOut);
+    if(uName&&uName.length!=0){
+        span.innerHTML = uName+"欢迎回来"
+        loginIn.className =  loginIn.className +" loginHide"
+        loginOut.className = loginOut.className.replace("loginHide","")
+    }else{
+        span.innerHTML="";
+        loginIn.className =  loginIn.className.replace("loginHide","")
+        loginOut.className = loginOut.className+" loginHide";
+    }
+}
+
+// let  javascriptElement = document.createElement("script");
+// javascriptElement.innerHTML="topRightInit()";
+// document.appendChild(javascriptElement);
+// console.log(window);
+// console.log(document);
+// document.addEventListener("onReady",function(){
+//     topRightInit()
+// });
+

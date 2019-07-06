@@ -10,6 +10,7 @@
     <link rel="styleSheet" href="/css/mybase.css">
     </link>
     <script src="/js/ckeditor.js"></script>
+    <script src="/js/myjs.js"></script>
 </head>
 
 <body>
@@ -29,6 +30,11 @@
             <a href="/store.html">商城</a>
             <a href="/shopcar/gotoshopcar">购物车</a>
         </nav>
+        <div class="top_right">
+            <span>xx欢迎回来 </span>
+            <a href="/userlogin.html" class="loginIn">还没有登录请登录</a>
+            <a href="/admin/loginOut" class="loginOut">退出登录</a>
+        </div>
     </div>
 
     <!-- 主体部分 -->
@@ -38,15 +44,15 @@
 
             <form action="/blog/add" method="POST">
 
-                <select name="bokeType" >
+                <select name="bokeType">
                     <option value="1">笔记心得</option>
                     <option value="2">vue笔记</option>
                     <option value="3">心灵感悟</option>
                     <option value="4">web前沿</option>
                 </select>
-                标题: <input type="text" name="title" id="" ><br>
+                标题: <input type="text" name="title" id=""><br>
                 <textarea name="content" id="content">
-                
+
                 </textarea>
                 <button>提交</button>
                 <!-- <input type="button" value="测试小按钮" onclick="test()"> -->
@@ -72,6 +78,7 @@
             console.log(data);
         }
         CKEDITOR.replace('content');
+        topRightInit();
     </script>
 </body>
 

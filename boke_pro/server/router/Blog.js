@@ -258,4 +258,33 @@ router.get("/getCount",(req,res)=>{
         res.send({code:200,msg:"查询数据总数成功",data:result});
     })
 })
+
+router.get("/pinglun",(req,res)=>{
+    let blogId =req.query.blogId;
+    if(!blogId){
+        res.send({code:300,msg:"参数错误"});
+        return ;
+    }
+    pool.query("select uid,uanme,blogId,ptime,content from pinglun where blogId=?",[blogId],(error,result)=>{
+        if(error)
+            throw error;
+        res.send({code:200,data:result});
+    })
+});
+
+router.post("/addComment",(req,res)=>{
+    let  date = new Date();
+    let uname=req.session["uname"];
+    let uid = req.session["uid"]
+    let blogId =req.body.blogId;
+    let content = req.body.content;
+    console.log(date.toLocaleTimeString());
+    console.log(date.toLocaleString());
+    console.log(date.toLocaleDateString());
+    pool.query("insert into pinglun(uanme,blogId,ptime,content,uid) values(?,?,?,?,?)",[uname,blogId,date.toLocaleDateString(),content,uid],(error,result)=>{
+        if(error)
+            throw error
+        res.send({code:200,msg:"添加成功"})
+    });
+})
 module.exports = router;

@@ -26,6 +26,11 @@
             <a href="/store.html">商城</a>
             <a href="/shopcar/gotoshopcar">购物车</a>
         </nav>
+        <div class="top_right">
+            <span>xx欢迎回来 </span>
+            <a href="/userlogin.html" class="loginIn">还没有登录请登录</a>
+            <a href="/admin/loginOut" class="loginOut">退出登录</a>
+        </div>
     </div>
     <!-- 主体部分 -->
     <div id="body">
@@ -346,7 +351,8 @@
             try { m += s1.split(".")[1].length } catch (e) { }
             try { m += s2.split(".")[1].length } catch (e) { }
             return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
-        }  
+        }
+        topRightInit();  
     </script>
 </body>
 

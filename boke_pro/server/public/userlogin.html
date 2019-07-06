@@ -26,19 +26,24 @@
             <a href="/store.html">商城</a>
             <a href="/shopcar/gotoshopcar">购物车</a>
         </nav>
+        <div class="top_right">
+            <span>xx欢迎回来 </span>
+            <a href="/userlogin.html" class="loginIn">还没有登录请登录</a>
+            <a href="/admin/loginOut" class="loginOut">退出登录</a>
+        </div>
     </div>
     <!-- 主体部分 -->
     <div id="body">
         <!-- <form method="POST" action="/admin/userLogin"> -->
-            <div class="warp_userLogin">
-                <h1>登录</h1>
-                <input type="text" name="uname" id="uname" placeholder="输入账号"  onblur="testUname()">
-                <label id="luname"></label>
-                <input type="password" name="pwd" id="pwd" placeholder="输入密码" onblur="testPwd()">
-                <label id="lpwd"></label>
-                <button onclick="userLogin()">登录</button>
-                <a href="./register.html">没有账号？立即注册</a>
-            </div>
+        <div class="warp_userLogin">
+            <h1>登录</h1>
+            <input type="text" name="uname" id="uname" placeholder="输入账号" onblur="testUname()">
+            <label id="luname"></label>
+            <input type="password" name="pwd" id="pwd" placeholder="输入密码" onblur="testPwd()">
+            <label id="lpwd"></label>
+            <button onclick="userLogin()">登录</button>
+            <a href="./register.html">没有账号？立即注册</a>
+        </div>
         <!-- </form> -->
     </div>
 
@@ -50,55 +55,57 @@
 
 </body>
 <script>
-    
+
     isallow = false;
-    
-    function testUname(){
-        if(uname.value){
 
-            var reg=/^\w{4,10}$/
-            if(reg.test(uname.value)){
-                isallow =true;
-                luname.innerHTML="";
-            }else{
-                isallow =false;
-                luname.innerHTML="用户名4-10位之间,字母或者数字组成";
+    function testUname() {
+        if (uname.value) {
+
+            var reg = /^\w{4,10}$/
+            if (reg.test(uname.value)) {
+                isallow = true;
+                luname.innerHTML = "";
+            } else {
+                isallow = false;
+                luname.innerHTML = "用户名4-10位之间,字母或者数字组成";
             }
-        }else{
-            isallow=false;
-            luname.innerHTML="用户名为空";
+        } else {
+            isallow = false;
+            luname.innerHTML = "用户名为空";
         }
     }
 
 
-    function testPwd(){
-        if(pwd.value){
+    function testPwd() {
+        if (pwd.value) {
 
-            var reg=/^\w{6,10}$/
-            if(reg.test(pwd.value)){
-                isallow=true;
-                lpwd.innerHTML="";
-            }else{
-                isallow =false;
-                lpwd.innerHTML="密码6-10位之间,字母或数字组成";
+            var reg = /^\w{6,10}$/
+            if (reg.test(pwd.value)) {
+                isallow = true;
+                lpwd.innerHTML = "";
+            } else {
+                isallow = false;
+                lpwd.innerHTML = "密码6-10位之间,字母或数字组成";
             }
-          
-        }else{
-            isallow=false;
-            lpwd.innerHTML="密码为空";
+
+        } else {
+            isallow = false;
+            lpwd.innerHTML = "密码为空";
         }
     }
 
-    function userLogin(){
-        if(!isallow){
-            return 
+    function userLogin() {
+        if (!isallow) {
+            return
         }
-        var body ="uname="+uname.value+"&pwd="+pwd.value;
-        ajax_post("/admin/userLogin",(obj)=>{
+        var body = "uname=" + uname.value + "&pwd=" + pwd.value;
+        ajax_post("/admin/userLogin", (obj) => {
             // console.log(obj)
             alert("登录成功")
-            window.location.href="/"; 
-        },body)
+            window.location.href = "/";
+        }, body)
     }
+    topRightInit();
 </script>
+
 </html>

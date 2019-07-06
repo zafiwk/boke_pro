@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>管理后台</title>
     <link rel="styleSheet" href="./css/mybase.css">
+    <script src="/js/myjs.js"></script>
 </head>
 
 <body class="bg_login">
@@ -25,6 +26,11 @@
             <a href="/store.html">商城</a>
             <a href="/shopcar/gotoshopcar">购物车</a>
         </nav>
+        <div class="top_right">
+            <span>xx欢迎回来 </span>
+            <a href="/userlogin.html" class="loginIn">还没有登录请登录</a>
+            <a href="/admin/loginOut" class="loginOut">退出登录</a>
+        </div>
     </div>
     <!-- 主体部分 -->
     <div id="body">
@@ -38,7 +44,9 @@
         </div>
 
     </div>
-
+    <script>
+     topRightInit();
+    </script>
 </body>
 
 </html>

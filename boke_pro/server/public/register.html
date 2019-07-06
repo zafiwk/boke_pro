@@ -26,6 +26,11 @@
             <a href="/store.html">商城</a>
             <a href="/shopcar/gotoshopcar">购物车</a>
         </nav>
+        <div class="top_right">
+            <span>xx欢迎回来 </span>
+            <a href="/userlogin.html" class="loginIn">还没有登录请登录</a>
+            <a href="/admin/loginOut" class="loginOut">退出登录</a>
+        </div>
     </div>
     <!-- 主体部分 -->
     <div id="body">
@@ -55,53 +60,54 @@
             ajax_post("/admin/register", (obj) => {
                 // console.log(obj)
                 alert("注册成功")
-                window.location.href="/"; 
+                window.location.href = "/";
             }, body)
         }
-   
+
 
         function testPwd() {
-            if(!pwd.value){
-                isNotLogin=false;
-                lpwd.innerHTML="密码不能为空";
-            }else{
-                var reg=/^\w{4,10}$/
-                if(reg.test(pwd.value)){
-                    isNotLogin=true;
-                    lpwd.innerHTML="";
-                }else{
-                    isNotLogin=false;
-                    lpwd.innerHTML="密码6-10位之间,字母或数字组成";
+            if (!pwd.value) {
+                isNotLogin = false;
+                lpwd.innerHTML = "密码不能为空";
+            } else {
+                var reg = /^\w{4,10}$/
+                if (reg.test(pwd.value)) {
+                    isNotLogin = true;
+                    lpwd.innerHTML = "";
+                } else {
+                    isNotLogin = false;
+                    lpwd.innerHTML = "密码6-10位之间,字母或数字组成";
                 }
             }
         }
         function testUname() {
             if (!uname.value) {
-                isNotLogin=false;
+                isNotLogin = false;
                 luname.innerHTML = "用户名为空";
                 return
-            }else{
-                var reg=/^\w{4,10}$/
-                if(reg.test(uname.value)){
-                    isNotLogin=true;
-                    luname.innerHTML="";
-                }else{
-                    isNotLogin=false;
-                    luname.innerHTML="用户名4-10位之间,字母或者数字组成";
-                    return ;
+            } else {
+                var reg = /^\w{4,10}$/
+                if (reg.test(uname.value)) {
+                    isNotLogin = true;
+                    luname.innerHTML = "";
+                } else {
+                    isNotLogin = false;
+                    luname.innerHTML = "用户名4-10位之间,字母或者数字组成";
+                    return;
                 }
             }
             var body = "uname=" + uname.value;
             ajax_post("/admin/userIsExists", (obj) => {
                 if (obj["msg"] === "用户存在") {
                     isNotLogin = false;
-                    luname.innerHTML="用户已近存在";
+                    luname.innerHTML = "用户已近存在";
                 } else {
                     isNotLogin = true;
-                    luname.innerHTML=""
+                    luname.innerHTML = ""
                 }
             }, body);
         }
+        topRightInit();
     </script>
 </body>
 

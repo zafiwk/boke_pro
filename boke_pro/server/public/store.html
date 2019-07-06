@@ -108,6 +108,11 @@
             <a href="/store.html">商城</a>
             <a href="/shopcar/gotoshopcar">购物车</a>
         </nav>
+        <div class="top_right">
+            <span>xx欢迎回来 </span>
+            <a href="/userlogin.html" class="loginIn">还没有登录请登录</a>
+            <a href="/admin/loginOut" class="loginOut">退出登录</a>
+        </div>
     </div>
     <!-- 主体部分 -->
     <div id="body">
@@ -331,23 +336,23 @@
             //     // console.log("鼠标离开了");
             //     hideContentItem();
             // });
-            
+
             // $("#banner").mouseenter(function(){
             //     // console.log("鼠标进入了");
             //     hideContentItem();
             // });
-            let catalog=document.getElementsByClassName("catalog")[0];
+            let catalog = document.getElementsByClassName("catalog")[0];
             console.log(catalog);
-            catalog.onmouseleave=function(e){
+            catalog.onmouseleave = function (e) {
                 console.log("鼠标离开了");
                 hideContentItem();
             }
             let banner = document.getElementById("banner");
-            banner.onmouseenter=function(e){
+            banner.onmouseenter = function (e) {
                 console.log("鼠标进入了");
                 hideContentItem();
             }
-        
+
             function hideContentItem() {
                 let showLi = document.querySelector(".top_content_item_show");
                 if (showLi) {
@@ -472,18 +477,19 @@
             }
         }
 
-        function addshopCare(pid){
+        function addshopCare(pid) {
             // console.log(pid);
-            ajax_post("/shopcar/addProdu",(result)=>{
-               
-                if(result.code==201){
+            ajax_post("/shopcar/addProdu", (result) => {
+
+                if (result.code == 201) {
                     alert("请登录");
-                    location.href="/userlogin.html"
-                }else{
+                    location.href = "/userlogin.html"
+                } else {
                     alert("添加成功");
                 }
-            },"produId="+pid)
+            }, "produId=" + pid)
         }
+        topRightInit();
     </script>
 </body>
 
