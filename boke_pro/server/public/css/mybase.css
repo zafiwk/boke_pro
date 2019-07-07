@@ -2158,7 +2158,7 @@ a.buy_bot{
 
 .top_right{
     float: right;
-    margin-right: 50px;
+    margin-right: 0px;
 }
 .top_right>span{
     color: white;
