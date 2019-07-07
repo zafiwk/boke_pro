@@ -268,6 +268,7 @@ router.get("/pinglun",(req,res)=>{
     pool.query("select uid,uanme,blogId,ptime,content from pinglun where blogId=?",[blogId],(error,result)=>{
         if(error)
             throw error;
+        // console.log(result);
         res.send({code:200,data:result});
     })
 });
@@ -278,10 +279,12 @@ router.post("/addComment",(req,res)=>{
     let uid = req.session["uid"]
     let blogId =req.body.blogId;
     let content = req.body.content;
-    console.log(date.toLocaleTimeString());
-    console.log(date.toLocaleString());
-    console.log(date.toLocaleDateString());
-    pool.query("insert into pinglun(uanme,blogId,ptime,content,uid) values(?,?,?,?,?)",[uname,blogId,date.toLocaleDateString(),content,uid],(error,result)=>{
+    // console.log(date.toLocaleTimeString());
+    // console.log(date.toLocaleString());
+    // console.log(date.toLocaleDateString());
+    let dateString = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;
+    console.log(dateString);
+    pool.query("insert into pinglun(uanme,blogId,ptime,content,uid) values(?,?,?,?,?)",[uname,blogId,dateString,content,uid],(error,result)=>{
         if(error)
             throw error
         res.send({code:200,msg:"添加成功"})

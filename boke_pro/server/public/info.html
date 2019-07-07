@@ -137,18 +137,21 @@
             count.innerHTML = "点击量:" + result["data"];
         }, "bid=" + bid);
         topRightInit();
+
     function loadPinglun(){
         ajax_get("/blog/pinglun"+"?blogId="+bid,(result)=>{
             console.log(result);
             let  ul = document.querySelector(".yonghupinglun > ul");
             let  html = "";
+           
             for(let i=0;i<result["data"].length;i++){
                 let  model = result["data"][i];
+                let  date= new Date(model.ptime);
                 html +=`
                 <li data-id=${model.pid}>
                 <div>
                             <span class="uName"  data-id-"15">用户：${model.uanme}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            <span class="ptime">时间:${model.ptime}</span>
+                            <span class="ptime">时间:${date.toLocaleString()}</span>
                         </div>
                         <div class="plContent">
                            评论:${model.content}
@@ -176,6 +179,7 @@
             // let blogId =req.body.blogId;
     // let content = req.body.content;
             ajax_post("/blog/addComment",(result)=>{
+                inputText.value="";
                 loadPinglun();
             },"blogId="+bid+"&content="+content);
         }else{
