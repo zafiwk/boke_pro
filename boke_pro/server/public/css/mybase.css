@@ -1648,6 +1648,7 @@ div.top>span {
     background: white;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    overflow: hidden;
 }
 .catalog>ul{
     list-style-type: none;
@@ -1704,7 +1705,7 @@ div.top>span {
 
 .top_content{
     width: 900px;
-    height: 448px;
+    height: 455px;
     background: white;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -1712,6 +1713,7 @@ div.top>span {
     position: absolute;
     top: 0;
     right: 0;
+    overflow: hidden;
 }
 
 
